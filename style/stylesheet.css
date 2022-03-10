@@ -1,0 +1,17 @@
+html {
+    background-color: black;
+}
+
+#canvas {
+    position: absolute;
+    padding: 0px;
+    margin: auto;
+    display: block;
+    border: 5px solid lightgrey;
+    background-color: black;
+    border-radius: 5px;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+}
