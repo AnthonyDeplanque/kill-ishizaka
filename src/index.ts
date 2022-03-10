@@ -7,5 +7,5 @@ function gameLoop() {
 }
 
 window.onload = (): void => {
-
+    window.requestAnimationFrame(gameLoop);
 }
