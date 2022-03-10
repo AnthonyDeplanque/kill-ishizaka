@@ -1,0 +1,16 @@
+{
+  "name": "test",
+  "version": "test",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^4.6.2"
+  },
+  "dependencies": {
+    "node-fetch": "^3.2.2",
+    "serve": "^13.0.2"
+  },
+  "scripts": {
+    "start": "npx tsc -w"
+  }
+}
