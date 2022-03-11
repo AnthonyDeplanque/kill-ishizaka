@@ -1,17 +1,17 @@
-import { STAR_TRANSPARENCY } from "../assets/Transparency";
+import { STAR_TRANSPARENCY } from "../variables/Transparency";
 import { CANVAS } from "../canvas/Canvas";
 import { CONTEXT } from "../canvas/Context";
 import randomize from "../utils/randomize";
 
 export class Star {
-    protected x: number;
-    protected y: number;
-    protected size: number;
-    protected speed: number;
-    protected color_r: number;
-    protected color_g: number;
-    protected color_b: number;
-    protected color: string;
+    private x: number;
+    private y: number;
+    private readonly size: number;
+    private readonly speed: number;
+    private readonly color_r: number;
+    private readonly color_g: number;
+    private readonly color_b: number;
+    private readonly color: string;
 
     constructor(x: number, y: number) {
         this.x = x;
@@ -23,6 +23,7 @@ export class Star {
         this.color_b = randomize(150, 255);
         this.color = `rgba(${this.color_r}, ${this.color_g}, ${this.color_b}, ${STAR_TRANSPARENCY})`;
     };
+
     public draw() {
         CONTEXT.fillStyle = this.color;
         CONTEXT.beginPath();
@@ -36,11 +37,17 @@ export class Star {
         CONTEXT.fill();
         CONTEXT.closePath();
     };
+
     public update() {
         this.y += this.speed;
         if (this.y > CANVAS.height) {
             this.y = 0;
+            this.x = randomize(1, CANVAS.width);
         }
-        this.x = randomize(1, CANVAS.width);
+    }
+
+    public run() {
+        this.draw();
+        this.update();
     }
 }
