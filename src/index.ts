@@ -1,16 +1,13 @@
-import STARDUST from "./variables/background/starDust";
 import { clearCanvas } from "./canvas/clearCanvas";
+import { Star } from "./classes/Star";
+import { starDustInit } from "./variables/background/starDustInit";
 
+const starDust: Star[] = starDustInit();
 
 function gameLoop(): void {
     clearCanvas();
-    for (let star of STARDUST) {
-        console.log(star);
-        star.draw();
-    }
+    starDust.forEach((star: Star) => star.run());
     window.requestAnimationFrame(gameLoop);
 }
 
-window.onload = (): void => {
-    window.requestAnimationFrame(gameLoop);
-}
+gameLoop();

@@ -4,11 +4,12 @@ import { CANVAS } from "../../canvas/Canvas";
 
 const NUMBER_OF_STARS = randomize(1, 50);
 
-export const starDustInit = (): Star[] => {
-    const arrayOfStars: Star[] = [];
-    for (let i: number = 0; i > NUMBER_OF_STARS; i++) {
+export function starDustInit(): Star[] {
+    let arrayOfStars: Star[] = [];
+    for (let i: number = 0; i < NUMBER_OF_STARS; i++) {
+        console.log(i);
         const star = new Star(randomize(1, CANVAS.width), randomize(1, CANVAS.height));
-        arrayOfStars.push(star);
+        arrayOfStars[i] = (star);
     }
     return arrayOfStars;
 }
