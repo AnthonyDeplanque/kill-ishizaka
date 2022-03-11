@@ -1,6 +1,6 @@
 {
-  "name": "test",
-  "version": "test",
+  "name": "Kill Ishizaka",
+  "version": "0.0.1",
   "main": "./src/index.ts",
   "private": true,
   "license": "MIT",
