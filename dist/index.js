@@ -56,7 +56,7 @@ eval("\r\nvar __importDefault = (this && this.__importDefault) || function (mod)
   \**********************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-eval("\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\nvar clearCanvas_1 = __webpack_require__(/*! ./canvas/clearCanvas */ \"./src/canvas/clearCanvas.ts\");\r\nvar starDustInit_1 = __webpack_require__(/*! ./variables/background/starDustInit */ \"./src/variables/background/starDustInit.ts\");\r\nvar starDust = (0, starDustInit_1.starDustInit)();\r\nfunction gameLoop() {\r\n    (0, clearCanvas_1.clearCanvas)();\r\n    starDust.forEach(function (star) { return star.run(); });\r\n    window.requestAnimationFrame(gameLoop);\r\n}\r\ngameLoop();\r\n\n\n//# sourceURL=webpack://test/./src/index.ts?");
+eval("\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\nvar clearCanvas_1 = __webpack_require__(/*! ./canvas/clearCanvas */ \"./src/canvas/clearCanvas.ts\");\r\nvar starDust_1 = __webpack_require__(/*! ./variables/background/starDust */ \"./src/variables/background/starDust.ts\");\r\nfunction gameLoop() {\r\n    (0, clearCanvas_1.clearCanvas)();\r\n    starDust_1.STARDUST.forEach(function (star) { return star.run(); });\r\n    window.requestAnimationFrame(gameLoop);\r\n}\r\ngameLoop();\r\n\n\n//# sourceURL=webpack://test/./src/index.ts?");
 
 /***/ }),
 
@@ -80,13 +80,23 @@ eval("\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\n
 
 /***/ }),
 
+/***/ "./src/variables/background/starDust.ts":
+/*!**********************************************!*\
+  !*** ./src/variables/background/starDust.ts ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+eval("\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\nexports.STARDUST = void 0;\r\nvar starDustInit_1 = __webpack_require__(/*! ./starDustInit */ \"./src/variables/background/starDustInit.ts\");\r\nexports.STARDUST = (0, starDustInit_1.starDustInit)();\r\n\n\n//# sourceURL=webpack://test/./src/variables/background/starDust.ts?");
+
+/***/ }),
+
 /***/ "./src/variables/background/starDustInit.ts":
 /*!**************************************************!*\
   !*** ./src/variables/background/starDustInit.ts ***!
   \**************************************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
-eval("\r\nvar __importDefault = (this && this.__importDefault) || function (mod) {\r\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\r\n};\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\nexports.starDustInit = void 0;\r\nvar randomize_1 = __importDefault(__webpack_require__(/*! ../../utils/randomize */ \"./src/utils/randomize.ts\"));\r\nvar Star_1 = __webpack_require__(/*! ../../classes/Star */ \"./src/classes/Star.ts\");\r\nvar Canvas_1 = __webpack_require__(/*! ../../canvas/Canvas */ \"./src/canvas/Canvas.ts\");\r\nvar NUMBER_OF_STARS = (0, randomize_1.default)(1, 50);\r\nfunction starDustInit() {\r\n    var arrayOfStars = [];\r\n    for (var i = 0; i < NUMBER_OF_STARS; i++) {\r\n        console.log(i);\r\n        var star = new Star_1.Star((0, randomize_1.default)(1, Canvas_1.CANVAS.width), (0, randomize_1.default)(1, Canvas_1.CANVAS.height));\r\n        arrayOfStars[i] = (star);\r\n    }\r\n    return arrayOfStars;\r\n}\r\nexports.starDustInit = starDustInit;\r\n\n\n//# sourceURL=webpack://test/./src/variables/background/starDustInit.ts?");
+eval("\r\nvar __importDefault = (this && this.__importDefault) || function (mod) {\r\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\r\n};\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\nexports.starDustInit = void 0;\r\nvar randomize_1 = __importDefault(__webpack_require__(/*! ../../utils/randomize */ \"./src/utils/randomize.ts\"));\r\nvar Star_1 = __webpack_require__(/*! ../../classes/Star */ \"./src/classes/Star.ts\");\r\nvar Canvas_1 = __webpack_require__(/*! ../../canvas/Canvas */ \"./src/canvas/Canvas.ts\");\r\nvar NUMBER_OF_STARS = (0, randomize_1.default)(1, 50);\r\nfunction starDustInit() {\r\n    var arrayOfStars = [];\r\n    for (var i = 0; i < NUMBER_OF_STARS; i++) {\r\n        var star = new Star_1.Star((0, randomize_1.default)(1, Canvas_1.CANVAS.width), (0, randomize_1.default)(1, Canvas_1.CANVAS.height));\r\n        arrayOfStars[i] = (star);\r\n    }\r\n    return arrayOfStars;\r\n}\r\nexports.starDustInit = starDustInit;\r\n\n\n//# sourceURL=webpack://test/./src/variables/background/starDustInit.ts?");
 
 /***/ })
 

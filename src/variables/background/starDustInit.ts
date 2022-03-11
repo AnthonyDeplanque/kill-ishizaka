@@ -2,7 +2,7 @@ import randomize from "../../utils/randomize";
 import { Star } from "../../classes/Star";
 import { CANVAS } from "../../canvas/Canvas";
 
-const NUMBER_OF_STARS = randomize(1, 50);
+export const NUMBER_OF_STARS = randomize(1, 50);
 
 export function starDustInit(): Star[] {
     let arrayOfStars: Star[] = [];
