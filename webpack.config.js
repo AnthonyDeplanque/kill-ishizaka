@@ -1,6 +1,8 @@
 const path = require('path');
 const sitePath = path.resolve(__dirname, './');
 
+
+// TODO => check for the hot reload
 module.exports = {
     mode: 'development',
 
