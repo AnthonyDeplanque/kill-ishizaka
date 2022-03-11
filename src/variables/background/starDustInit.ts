@@ -2,7 +2,8 @@ import randomize from "../../utils/randomize";
 import { Star } from "../../classes/Star";
 import { CANVAS } from "../../canvas/Canvas";
 
-export const NUMBER_OF_STARS = randomize(1, 50);
+export const MAX_NUMBER_OF_STARS: number = 250;
+export const NUMBER_OF_STARS = randomize(MAX_NUMBER_OF_STARS - 50, MAX_NUMBER_OF_STARS);
 
 export function starDustInit(): Star[] {
     let arrayOfStars: Star[] = [];

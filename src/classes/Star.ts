@@ -2,6 +2,8 @@ import { STAR_TRANSPARENCY } from "../variables/Transparency";
 import { CANVAS } from "../canvas/Canvas";
 import { CONTEXT } from "../canvas/Context";
 import randomize from "../utils/randomize";
+import { STARS_MAX_SIZE, STARS_MIN_SIZE } from "../variables/StarsSize";
+
 
 export class Star {
     private x: number;
@@ -12,11 +14,13 @@ export class Star {
     private readonly color_g: number;
     private readonly color_b: number;
     private readonly color: string;
+    private readonly min_size: number = STARS_MIN_SIZE;
+    private readonly max_size: number = STARS_MAX_SIZE;
 
     constructor(x: number, y: number) {
         this.x = x;
         this.y = y;
-        this.size = randomize(1, 4);
+        this.size = randomize(this.min_size, this.max_size);
         this.speed = this.size * 2;
         this.color_r = randomize(150, 255);
         this.color_g = randomize(150, 255);
