@@ -1,3 +1,4 @@
+import { DEBUG } from "..";
 import { CANVAS } from "../canvas/Canvas";
 import { CONTEXT } from "../canvas/Context";
 import { LIMIT_FOR_ENEMY_CREATION_IN_PIXELS } from "../variables/Limit";
@@ -18,13 +19,13 @@ export class EnemyBuilder {
         this.x = LIMIT_FOR_ENEMY_CREATION_IN_PIXELS;
         this.x_direction = 1;
     }
-    protected draw() {
+    private draw() {
         //TODO : refactorize color names in a theme or other
         CONTEXT.fillStyle = 'red';
         CONTEXT.fillRect(this.x, LIMIT_FOR_ENEMY_CREATION_IN_PIXELS, POSITION_SIZE, POSITION_SIZE)
 
     };
-    protected update() {
+    private update() {
         this.x += this.x_direction;
         if (this.x < LIMIT_FOR_ENEMY_CREATION_IN_PIXELS) {
             this.x = LIMIT_FOR_ENEMY_CREATION_IN_PIXELS;
@@ -36,7 +37,9 @@ export class EnemyBuilder {
         }
     };
     public run() {
-        this.draw();
+        if (DEBUG) {
+            this.draw();
+        }
         this.update();
     };
 }

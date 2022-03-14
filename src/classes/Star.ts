@@ -28,7 +28,7 @@ export class Star {
         this.color = `rgba(${this.color_r}, ${this.color_g}, ${this.color_b}, ${STAR_TRANSPARENCY})`;
     };
 
-    public draw() {
+    private draw() {
         CONTEXT.fillStyle = this.color;
         CONTEXT.beginPath();
         CONTEXT.arc(
@@ -42,7 +42,7 @@ export class Star {
         CONTEXT.closePath();
     };
 
-    public update() {
+    private update() {
         this.y += this.speed;
         if (this.y > CANVAS.height) {
             this.y = 0;

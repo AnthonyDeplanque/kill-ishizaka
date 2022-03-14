@@ -1,6 +1,6 @@
 import { DEBUG } from "..";
 import { CONTEXT } from "../canvas/Context";
-import { Coordinates } from "./Coordinates";
+import { Coordinates } from "./types/Coordinates";
 
 export abstract class Ship {
 

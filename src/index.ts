@@ -1,7 +1,7 @@
 import { CANVAS } from "./canvas/Canvas";
 import { clearCanvas } from "./canvas/clearCanvas";
 import { Star } from "./classes/Star";
-import { STARDUST } from "./variables/background/starDust";
+import { STARDUST } from "./variables/background/starDustInit";
 import { LIMIT_FOR_CANVAS } from "./variables/Limit";
 
 CANVAS.width = window.screen.width - LIMIT_FOR_CANVAS;
