@@ -1,3 +1,6 @@
+import { EnemyShip } from "../classes/Ships/EnemyShip";
+import { Coordinates } from "../classes/types/Coordinates";
+
 export type Axis =
     | "x"
     | "y";
@@ -12,15 +15,23 @@ export type Axis =
  * @param highLimit the high limit for the pattern
  * @param lowLimit the low limit for the pattern
  */
-export const sinusoidalPattern = (object: any, axis: Axis, highLimit: number, lowLimit: number): void => {
-    //TODO => Type the object with the enemy class !!!
+export const sinusoidalPattern = (object: EnemyShip, axis: Axis, highLimit: number, lowLimit: number): void => {
+    //TODO => Check the sinusoidal pattern
+    const update = object.getUpdate();
+    const direction = object.getDirection();
 
-    if (object[`${axis}Update`] > highLimit) {
-        object[`${axis}Update`] = highLimit;
-        object[`${axis}Direction`] *= -1;
+    if (update[axis] > highLimit) {
+        update[axis] = highLimit;
+        direction[axis] *= -1;
     }
-    if (object[`${axis}Update`] > lowLimit) {
-        object[`${axis}Update`] = lowLimit;
-        object[`${axis}Direction`] *= -1;
+    if (update[axis] > lowLimit) {
+        update[axis] = lowLimit;
+        direction[axis] *= -1;
     }
+    object.setUpdate(update);
+    object.setDirection(direction);
+
+
+
+
 }
