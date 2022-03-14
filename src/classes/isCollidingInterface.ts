@@ -1,11 +1,11 @@
+import { Coordinates } from "./Coordinates";
+
 export interface IsCollidingInterface {
     objectA: ObjectForCollidingInterface;
     objectB: ObjectForCollidingInterface;
 }
 
-export interface ObjectForCollidingInterface {
-    x: number;
-    y: number;
-    sizeX: number;
-    sizeY: number;
+export interface ObjectForCollidingInterface extends Coordinates {
+    xSize: number;
+    ySize: number;
 }

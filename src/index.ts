@@ -7,6 +7,8 @@ import { LIMIT_FOR_CANVAS } from "./variables/Limit";
 CANVAS.width = window.screen.width - LIMIT_FOR_CANVAS;
 CANVAS.height = window.screen.height - LIMIT_FOR_CANVAS * 2;
 
+export const DEBUG = true;
+
 
 /**
  * this function clear the canvas and initiate a new image

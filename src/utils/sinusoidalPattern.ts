@@ -13,6 +13,8 @@ export type Axis =
  * @param lowLimit the low limit for the pattern
  */
 export const sinusoidalPattern = (object: any, axis: Axis, highLimit: number, lowLimit: number): void => {
+    //TODO => Type the object with the enemy class !!!
+
     if (object[`${axis}Update`] > highLimit) {
         object[`${axis}Update`] = highLimit;
         object[`${axis}Direction`] *= -1;
