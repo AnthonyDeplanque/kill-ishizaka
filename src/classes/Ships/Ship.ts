@@ -20,7 +20,7 @@ export abstract class Ship {
     }
 
     public draw(): void {
-        this.img ? CONTEXT.drawImage(this.img!, this.x, this.y) : this.drawHitbox();
+        CONTEXT.drawImage(this.img!, this.x, this.y)
     }
 
     public drawHitbox(): void {
