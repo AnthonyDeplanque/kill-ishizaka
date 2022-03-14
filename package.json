@@ -1,5 +1,5 @@
 {
-  "name": "Kill Ishizaka",
+  "name": "kill-ishizaka",
   "version": "0.0.1",
   "main": "./src/index.ts",
   "private": true,
@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "node-fetch": "^3.2.2",
+    "nodejs": "0.0.0",
     "serve": "^13.0.2",
     "ts-loader": "^9.2.8",
     "webpack": "^5.70.0",
