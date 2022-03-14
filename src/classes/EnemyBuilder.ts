@@ -42,4 +42,7 @@ export class EnemyBuilder {
         }
         this.update();
     };
+    public getPosition(): number {
+        return this.x;
+    }
 }

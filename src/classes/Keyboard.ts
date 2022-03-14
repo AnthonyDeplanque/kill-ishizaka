@@ -8,7 +8,6 @@ export class Keyboard {
     private space: boolean = false
     private enter: boolean = false
 
-
     public getKey(): KeyboardInterface {
         return {
             left: this.left,
@@ -20,7 +19,6 @@ export class Keyboard {
         }
     }
     public setKeyPressed(e: KeyboardEvent): void {
-
         switch (e.code) {
             case "Enter": //enter
                 this.enter = true;

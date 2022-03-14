@@ -1,5 +1,5 @@
 import { CANVAS } from "./canvas/Canvas";
-import { HeroShip } from "./classes/HeroShip";
+import { HeroShip } from "./classes/Ships/HeroShip";
 import { Keyboard } from "./classes/Keyboard";
 import { LIMIT_FOR_CANVAS } from "./variables/Limit";
 import { clearCanvas } from "./canvas/clearCanvas";

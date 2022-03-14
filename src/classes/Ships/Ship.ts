@@ -1,6 +1,6 @@
-import { DEBUG } from "..";
-import { CONTEXT } from "../canvas/Context";
-import { Coordinates } from "./types/Coordinates";
+import { DEBUG } from "../..";
+import { CONTEXT } from "../../canvas/Context";
+import { Coordinates } from "../types/Coordinates";
 
 export abstract class Ship {
 
@@ -9,15 +9,14 @@ export abstract class Ship {
     private xSize: number;
     private ySize: number;
     private readonly img?: HTMLImageElement;
-    private speed: number;
 
-    constructor(x: number, y: number, speed: number, img?: HTMLImageElement) {
+
+    constructor(x: number, y: number, img?: HTMLImageElement) {
         this.x = x;
         this.y = y;
         this.img = img;
         this.xSize = img?.width ? img?.width : 30;
         this.ySize = img?.height ? img?.height : 30;
-        this.speed = speed;
     }
 
     public draw(): void {
@@ -54,11 +53,6 @@ export abstract class Ship {
         }
     }
 
-    public getSpeed(): number {
-        return this.speed
-    }
-    public setSpeed(speed: number) {
-        this.speed = speed;
-    }
+
 
 }

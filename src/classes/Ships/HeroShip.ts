@@ -1,21 +1,29 @@
-import { CANVAS } from "../canvas/Canvas";
-import { Keyboard } from "./Keyboard";
+import { CANVAS } from "../../canvas/Canvas";
+import { Keyboard } from "../Keyboard";
 import { Ship } from "./Ship";
-import { KeyboardInterface } from "./types/Keyboard";
+import { KeyboardInterface } from "../types/Keyboard";
 
 export class HeroShip extends Ship {
+    speed: number;
     constructor(
         x: number,
         y: number,
         speed: number,
         img?: HTMLImageElement,
     ) {
-        super(x, y, speed, img);
+        super(x, y, img);
+        this.speed = speed;
     }
 
+    public getSpeed(): number {
+        return this.speed
+    }
+    public setSpeed(speed: number) {
+        this.speed = speed;
+    }
     public update(keyboard: Keyboard): void {
 
-        const key = keyboard.getKey();
+        const key: KeyboardInterface = keyboard.getKey();
 
         let coordinates = this.getPosition();
         const speed = this.getSpeed();
