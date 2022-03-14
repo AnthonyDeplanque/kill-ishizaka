@@ -22,7 +22,7 @@ export class EnemyShip extends Ship {
     ) {
         super(x, y, img);
         this.xSpeed = 10;
-        this.ySpeed = 1;
+        this.ySpeed = 10;
         this.xUpdate = randomize(1, 5);
         this.yUpdate = 0.5;
         this.xDirection = 0.5;
@@ -37,11 +37,11 @@ export class EnemyShip extends Ship {
         const enemyBuilder = new EnemyBuilder();
         const enemyBuilderPosition = enemyBuilder.getPosition();
 
-
         if (coordinates.y > CANVAS.height + size.y) {
             coordinates.y = 0 - size.y
             coordinates.x = enemyBuilderPosition;
         }
+
         if (coordinates.x < 0 || coordinates.x > CANVAS.width - size.x) {
             speed.x *= -1;
             this.setSpeed(speed);
