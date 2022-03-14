@@ -8,34 +8,31 @@ export abstract class Ship {
     private y: number;
     private xSize: number;
     private ySize: number;
-    private readonly img: HTMLImageElement;
+    private readonly img?: HTMLImageElement;
     private speed: number;
 
-    constructor(x: number, y: number, img: HTMLImageElement, speed: number) {
+    constructor(x: number, y: number, speed: number, img?: HTMLImageElement) {
         this.x = x;
         this.y = y;
         this.img = img;
-        this.xSize = img.width;
-        this.ySize = img.height;
+        this.xSize = img?.width ? img?.width : 30;
+        this.ySize = img?.height ? img?.height : 30;
         this.speed = speed;
     }
 
-    private draw(): void {
-        CONTEXT.drawImage(this.img, this.x, this.y)
+    public draw(): void {
+        this.img ? CONTEXT.drawImage(this.img!, this.x, this.y) : this.drawHitbox();
     }
 
-    private drawHitbox(): void {
+    public drawHitbox(): void {
         CONTEXT.fillStyle = "rgba(255,0,0,0.5)";
         CONTEXT.fillRect(this.x, this.y, this.xSize, this.ySize)
     }
 
-    private update(): void { }
+    public update(param?: unknown): void { }
 
     public run(): void {
-        if (DEBUG) {
-            this.drawHitbox();
-        }
-        this.draw();
+        DEBUG ? this.drawHitbox() : this.draw();
         this.update();
     }
 

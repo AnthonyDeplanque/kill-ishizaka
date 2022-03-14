@@ -1,3 +1,5 @@
+import { KeyboardInterface } from "./types/Keyboard"
+
 export class Keyboard {
     private left: boolean = false
     private right: boolean = false
@@ -6,24 +8,36 @@ export class Keyboard {
     private space: boolean = false
     private enter: boolean = false
 
+
+    public getKey(): KeyboardInterface {
+        return {
+            left: this.left,
+            right: this.right,
+            up: this.up,
+            down: this.down,
+            space: this.space,
+            enter: this.enter
+        }
+    }
     public setKeyPressed(e: KeyboardEvent): void {
+
         switch (e.code) {
-            case "13": //enter
+            case "Enter": //enter
                 this.enter = true;
                 break;
-            case "37": //left
+            case "ArrowLeft": //left
                 this.left = true;
                 break;
-            case "39": //right
+            case "ArrowRight": //right
                 this.right = true;
                 break;
-            case "38": //up
+            case "ArrowUp": //up
                 this.up = true;
                 break;
-            case "40": //down
+            case "ArrowDown": //down
                 this.down = true;
                 break;
-            case "32": //space
+            case "Space": //space
                 this.space = true;
                 break;
         }
@@ -31,22 +45,22 @@ export class Keyboard {
 
     public setKeyUnPressed(e: KeyboardEvent): void {
         switch (e.code) {
-            case "13": //enter
+            case "Enter": //enter
                 this.enter = false;
                 break;
-            case "37": //left
+            case "ArrowLeft": //left
                 this.left = false;
                 break;
-            case "39": //right
+            case "ArrowRight": //right
                 this.right = false;
                 break;
-            case "38": //up
+            case "ArrowUp": //up
                 this.up = false;
                 break;
-            case "40": //down
+            case "ArrowDown": //down
                 this.down = false;
                 break;
-            case "32": //space
+            case "Space": //space
                 this.space = false;
                 break;
         }

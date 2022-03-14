@@ -27,7 +27,7 @@ module.exports = {
         ],
     },
     resolve: {
-        extensions: ['.ts', '.d.ts', '.js', '.css'],
+        extensions: ['.ts', '.d.ts', '.js', '.css', '.png'],
         alias: {
         }
     },
