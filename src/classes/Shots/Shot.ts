@@ -18,8 +18,8 @@ export abstract class Shot {
   constructor(
     x: number,
     y: number,
-    initialPower: number,
-    powerMultiplier: number,
+    initialPower?: number,
+    powerMultiplier?: number,
   ) {
     this.x = x;
     this.y = y;
@@ -57,15 +57,19 @@ export abstract class Shot {
     this.x = position.x;
     this.y = position.y;
   };
+
   public getPower(): number {
     return this.power;
   }
+
   public getInitialPower(): number | undefined {
     return this.initialPower;
   }
+
   public getPowerMultiplier(): number | undefined {
     return this.powerMultiplier;
   }
+
   public getColor(): string {
     return this.color;
   }

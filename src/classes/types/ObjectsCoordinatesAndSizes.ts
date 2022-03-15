@@ -1,11 +1,11 @@
 import { Coordinates } from "./Coordinates";
 
-export interface ObjectsCoordinatesAndSizes {
-    objectA: ObjectCoordinatesAndSizesInterface;
-    objectB: ObjectCoordinatesAndSizesInterface;
+export interface ObjectsPositionAndSize {
+    objectA: PositionAndSize;
+    objectB: PositionAndSize;
 }
 
-export interface ObjectCoordinatesAndSizesInterface extends Coordinates {
-    xSize: number;
-    ySize: number;
+export interface PositionAndSize {
+    position: Coordinates;
+    size: Coordinates;
 }

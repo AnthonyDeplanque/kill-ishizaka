@@ -1,0 +1,1 @@
+export const DELAY_BETWEEN_TWO_SHOTS = 150; // in milliseconds;

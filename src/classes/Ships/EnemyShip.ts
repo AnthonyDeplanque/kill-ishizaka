@@ -38,7 +38,6 @@ export class EnemyShip extends Ship {
         if (position.y > CANVAS.height + size.y) {
             position.y = 0 - size.y;
             position.x = enemyBuilder.getPosition();
-            console.log(position.x)
             this.setPosition(position);
         }
         let patternX: { update: Coordinates, direction: Coordinates }, patternY: { update: Coordinates, direction: Coordinates };

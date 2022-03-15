@@ -9,6 +9,8 @@ import HERO_IMAGE from "./variables/HeroImage";
 import { EnemyBuilder } from "./classes/EnemyBuilder";
 import { ENEMY_SWARM } from "./variables/enemies/enemySwarmInit";
 import { EnemyShip } from "./classes/Ships/EnemyShip";
+import { shoot } from "./game/Shoot";
+import { Laser } from "./classes/Shots/Laser";
 
 
 CANVAS.width = window.screen.width - LIMIT_FOR_CANVAS;
@@ -19,16 +21,17 @@ const initY = (CANVAS.height / 4) * 3; // Initial position of the hero's ship (y
 
 export const DEBUG = false;
 
-const keyboard = new Keyboard();
+export const keyboard = new Keyboard();
 
 document.addEventListener("keydown", (e: KeyboardEvent) => keyboard.setKeyPressed(e));
 document.addEventListener("keyup", (e: KeyboardEvent) => keyboard.setKeyUnPressed(e));
 
 
-const hero = new HeroShip(initX, initY, 4, HERO_IMAGE);
+export const hero = new HeroShip(initX, initY, 4, HERO_IMAGE);
 
 export const enemyBuilder = new EnemyBuilder();
 
+export const lasers: Laser[] = [];
 
 const FRAMES_PER_SECOND = 60;  // Valid values are 60,30,20,15,10...
 // set the mim time to render the next frame
@@ -45,8 +48,8 @@ export function gameLoop(time: number): void {
 
     if (time - lastFrameTime < FRAME_MIN_TIME) { //skip the frame if the call is too early
         window.requestAnimationFrame(gameLoop);
+        return;
     }
-    lastFrameTime = time; // remember the time of the rendered frame
     // render the frame
 
     clearCanvas();
@@ -57,13 +60,14 @@ export function gameLoop(time: number): void {
 
     ENEMY_SWARM.forEach((enemy: EnemyShip) => enemy.run());
 
-
+    shoot();
 
     DEBUG ? hero.drawHitbox() : hero.draw();
     hero.update(keyboard);
 
     enemyBuilder.run();
 
+    lastFrameTime = time; // remember the time of the rendered frame
     window.requestAnimationFrame(gameLoop); // get next frame
 
 }

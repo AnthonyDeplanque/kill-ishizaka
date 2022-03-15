@@ -2,21 +2,22 @@ import { CONTEXT } from "../../canvas/Context";
 import { Coordinates } from "../types/Coordinates";
 import { Shot } from "./Shot";
 
-
 export class Laser extends Shot {
   private readonly xSize: number;
   private readonly ySize: number;
   private readonly xSpeed: number;
   private readonly ySpeed: number;
 
+  public static readonly LASER_SIZE_X = 4;
+
   constructor(
     x: number,
     y: number,
-    initialPower: number,
-    powerMultiplier: number
+    initialPower?: number,
+    powerMultiplier?: number
   ) {
     super(x, y, initialPower, powerMultiplier);
-    this.xSize = 4;
+    this.xSize = Laser.LASER_SIZE_X;
     this.ySize = 30;
     this.xSpeed = 0;
     this.ySpeed = 15;

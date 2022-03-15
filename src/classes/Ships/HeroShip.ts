@@ -31,7 +31,6 @@ export class HeroShip extends Ship {
         //TODO : how to switch with an object ?
 
         if (key.left) {
-            console.log(coordinates)
             if (coordinates.x > 0) {
                 coordinates.x -= speed;
                 this.setPosition(coordinates);
@@ -41,7 +40,6 @@ export class HeroShip extends Ship {
             }
         }
         if (key.right) {
-            console.log(coordinates)
             if (coordinates.x < (CANVAS.width - size.x)) {
                 coordinates.x += speed;
                 this.setPosition(coordinates);
@@ -51,7 +49,6 @@ export class HeroShip extends Ship {
             }
         }
         if (key.up) {
-            console.log(coordinates)
             if (coordinates.y > 0) {
                 coordinates.y -= speed;
                 this.setPosition(coordinates);
@@ -61,7 +58,7 @@ export class HeroShip extends Ship {
             }
         }
         if (key.down) {
-            console.log(coordinates)
+
             if (coordinates.y < (CANVAS.height - size.y)) {
                 coordinates.y += speed;
                 this.setPosition(coordinates);
