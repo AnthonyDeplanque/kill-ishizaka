@@ -30,14 +30,23 @@ const hero = new HeroShip(initX, initY, 4, HERO_IMAGE);
 export const enemyBuilder = new EnemyBuilder();
 
 
-gameLoop();
+const FRAMES_PER_SECOND = 60;  // Valid values are 60,30,20,15,10...
+// set the mim time to render the next frame
+const FRAME_MIN_TIME = (1000 / 60) * (60 / FRAMES_PER_SECOND) - (1000 / 60) * 0.5;
+let lastFrameTime = 0;  // the last frame time
+
 
 /**
  * this function clear the canvas and initiate a new image
  * for the canvas. this function is Mandatory to run 
  * properly the canvas
  */
-export function gameLoop(): void {
+export function gameLoop(time: number): void {
+
+    if (time - lastFrameTime < FRAME_MIN_TIME) { //skip the frame if the call is too early
+        window.requestAnimationFrame(gameLoop);
+        return; // return as there is nothing to do
+    }
 
     clearCanvas();
     STARDUST.forEach((star: Star) => star.run());
@@ -48,6 +57,9 @@ export function gameLoop(): void {
 
     enemyBuilder.run();
 
-    window.requestAnimationFrame(() => gameLoop());
-}
+    lastFrameTime = time; // remember the time of the rendered frame
+    // render the frame
+    window.requestAnimationFrame(gameLoop); // get next frame
 
+}
+window.requestAnimationFrame(gameLoop)
