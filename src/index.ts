@@ -45,20 +45,25 @@ export function gameLoop(time: number): void {
 
     if (time - lastFrameTime < FRAME_MIN_TIME) { //skip the frame if the call is too early
         window.requestAnimationFrame(gameLoop);
-        return; // return as there is nothing to do
     }
+    lastFrameTime = time; // remember the time of the rendered frame
+    // render the frame
 
     clearCanvas();
+
+
     STARDUST.forEach((star: Star) => star.run());
+
+
     ENEMY_SWARM.forEach((enemy: EnemyShip) => enemy.run());
+
+
 
     DEBUG ? hero.drawHitbox() : hero.draw();
     hero.update(keyboard);
 
     enemyBuilder.run();
 
-    lastFrameTime = time; // remember the time of the rendered frame
-    // render the frame
     window.requestAnimationFrame(gameLoop); // get next frame
 
 }
