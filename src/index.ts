@@ -27,7 +27,7 @@ document.addEventListener("keyup", (e: KeyboardEvent) => keyboard.setKeyUnPresse
 
 const hero = new HeroShip(initX, initY, 4, HERO_IMAGE);
 
-const enemyBuilder = new EnemyBuilder();
+export const enemyBuilder = new EnemyBuilder();
 
 
 gameLoop();

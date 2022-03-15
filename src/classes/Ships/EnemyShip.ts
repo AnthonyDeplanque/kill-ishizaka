@@ -1,9 +1,8 @@
+import { enemyBuilder } from "../../index";
 import { CANVAS } from "../../canvas/Canvas";
 import randomize from "../../utils/randomize";
 import { sinusoidalPattern } from "../../utils/sinusoidalPattern";
-import { EnemyBuilder } from "../EnemyBuilder";
 import { Coordinates } from "../types/Coordinates";
-import { EnemySpeed } from "../types/EnemySpeed";
 import { Ship } from "./Ship";
 
 export class EnemyShip extends Ship {
@@ -13,7 +12,7 @@ export class EnemyShip extends Ship {
     private yUpdate: number;
     private xDirection: number;
     private yDirection: number;
-    private readonly pattern: number;
+    // private readonly pattern: number;
 
     constructor(
         x: number,
@@ -21,55 +20,57 @@ export class EnemyShip extends Ship {
         img: HTMLImageElement
     ) {
         super(x, y, img);
-        this.xSpeed = 10;
-        this.ySpeed = 10;
+        this.xSpeed = randomize(8, 16);
+        this.ySpeed = randomize(5, 15) / 10;
         this.xUpdate = randomize(1, 5);
         this.yUpdate = 0.5;
         this.xDirection = 0.5;
         this.yDirection = 0.5;
-        this.pattern = randomize(1, 3);
     }
     public update(): void {
-        const coordinates = this.getPosition();
+        const position = this.getPosition();
         const size = this.getSize();
         const speed = this.getSpeed();
+        const direction = this.getDirection();
         const update = this.getUpdate();
-        const enemyBuilder = new EnemyBuilder();
-        const enemyBuilderPosition = enemyBuilder.getPosition();
 
-        if (coordinates.y > CANVAS.height + size.y) {
-            coordinates.y = 0 - size.y
-            coordinates.x = enemyBuilderPosition;
+
+        if (position.y > CANVAS.height + size.y) {
+            position.y = 0 - size.y;
+            position.x = enemyBuilder.getPosition();
+            console.log(position.x)
+            this.setPosition(position);
         }
+        let patternX: { update: Coordinates, direction: Coordinates }, patternY: { update: Coordinates, direction: Coordinates };
 
-        if (coordinates.x < 0 || coordinates.x > CANVAS.width - size.x) {
+        patternX = sinusoidalPattern(this, "x", 5, -5);
+        patternY = sinusoidalPattern(this, "y", 6, -1);
+
+        update.x = patternX!.update.x;
+        direction.x = patternX!.direction.x;
+        update.y = patternY!.update.y;
+        direction.y = patternY!.direction.y;
+
+        position.y += (update.y * speed.y) / 5;
+        position.x += (update.x * speed.x) / 10;
+        update.x += direction.x;
+        update.y += direction.y;
+
+
+
+        if (position.x < 0 || position.x > CANVAS.width - size.x) {
             speed.x *= -1;
+            if (position.x < 0) {
+                position.x = 0;
+            }
+            if (position.x > CANVAS.width - size.x) {
+                position.x = CANVAS.width - size.x;
+            }
             this.setSpeed(speed);
-            if (coordinates.x < 0) {
-                coordinates.x = 0;
-            }
-            if (coordinates.x > CANVAS.width - size.x) {
-                coordinates.x = CANVAS.width - size.x;
-            }
         }
-        switch (this.pattern) {
-            case 1:
-                sinusoidalPattern(this, "x", 5, -5);
-                sinusoidalPattern(this, "y", 5, 2);
-                break;
-            case 2:
-                speed.y = 2
-                this.setSpeed(speed);
-                sinusoidalPattern(this, "x", 1, -1);
-                sinusoidalPattern(this, "y", 10, -2);
-                break;
-            case 3:
-                sinusoidalPattern(this, "x", 5, -1);
-                sinusoidalPattern(this, "y", 3, -1);
-                coordinates.x += (update.x * speed.x) / 15
-                break;
-        }
-        this.setPosition(coordinates);
+        this.setUpdate(update);
+        this.setDirection(direction);
+        this.setPosition(position);
 
     }
 
