@@ -1,4 +1,3 @@
-import { EnemyBuilder } from "../classes/EnemyBuilder";
 import { EnemyShip } from "../classes/Ships/EnemyShip";
 import { Laser } from "../classes/Shots/Laser";
 import { Coordinates } from "../classes/types/Coordinates";
@@ -12,14 +11,14 @@ import { MAX_SIMULTANEOUS_SHOTS } from "../variables/MaxSimultaneousShots";
 
 
 let firingToggle: boolean = false;
-export const shoot = () => {
+export const shoot = (toggle: boolean) => {
 
-  const key = keyboard.getKey();
+
   const heroPosition: Coordinates = hero.getPosition();
   const heroSize: Coordinates = hero.getSize();
 
 
-  if (key.space) {
+  if (toggle) {
     if (firingToggle === false) {
       if (lasers.length < MAX_SIMULTANEOUS_SHOTS) {
 

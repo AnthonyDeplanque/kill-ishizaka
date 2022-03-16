@@ -11,6 +11,7 @@ import { ENEMY_SWARM } from "./variables/enemies/enemySwarmInit";
 import { EnemyShip } from "./classes/Ships/EnemyShip";
 import { shoot } from "./game/Shoot";
 import { Laser } from "./classes/Shots/Laser";
+import { keyboardListener } from "./game/KeyboardListener";
 
 
 CANVAS.width = window.screen.width - LIMIT_FOR_CANVAS;
@@ -22,15 +23,8 @@ const initY = (CANVAS.height / 4) * 3; // Initial position of the hero's ship (y
 export const DEBUG = false;
 
 export const keyboard = new Keyboard();
-
-document.addEventListener("keydown", (e: KeyboardEvent) => keyboard.setKeyPressed(e));
-document.addEventListener("keyup", (e: KeyboardEvent) => keyboard.setKeyUnPressed(e));
-
-
 export const hero = new HeroShip(initX, initY, 4, HERO_IMAGE);
-
 export const enemyBuilder = new EnemyBuilder();
-
 export const lasers: Laser[] = [];
 
 const FRAMES_PER_SECOND = 60;  // Valid values are 60,30,20,15,10...
@@ -38,6 +32,7 @@ const FRAMES_PER_SECOND = 60;  // Valid values are 60,30,20,15,10...
 const FRAME_MIN_TIME = (1000 / 60) * (60 / FRAMES_PER_SECOND) - (1000 / 60) * 0.5;
 let lastFrameTime = 0;  // the last frame time
 
+keyboardListener(keyboard);
 
 /**
  * this function clear the canvas and initiate a new image
@@ -57,10 +52,10 @@ export function gameLoop(time: number): void {
 
     STARDUST.forEach((star: Star) => star.run());
 
-
     ENEMY_SWARM.forEach((enemy: EnemyShip) => enemy.run());
 
-    shoot();
+    const keyboardShoot = keyboard.getKey().space;
+    shoot(keyboardShoot);
 
     DEBUG ? hero.drawHitbox() : hero.draw();
     hero.update(keyboard);
