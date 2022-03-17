@@ -3,7 +3,7 @@ import { Coordinates } from "../types/Coordinates";
 import { Input } from "./Input";
 
 export class Mouse extends Input {
-    public static DEAD_ZONE: number = 15;
+    public static readonly DEAD_ZONE: number = 5;
     private x: number = HeroShip.INIT_X;
     private y: number = HeroShip.INIT_Y;
     private click: boolean = false;

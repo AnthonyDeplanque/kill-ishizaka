@@ -1,6 +1,6 @@
 import { CONTEXT } from "../canvas/Context";
 import randomize from "../utils/randomize";
-import { STAR_TRANSPARENCY } from "../variables/Transparency";
+import { TRANSPARENCY } from "../variables/Transparency";
 
 export class Explosion {
     public static MAX_SIZE: number = 40;
@@ -25,7 +25,7 @@ export class Explosion {
         const green: number = randomize(150, 200);
         const blue: number = 0;
 
-        this.color = `rgba(${red}, ${green}, ${blue}, ${STAR_TRANSPARENCY})`
+        this.color = `rgba(${red}, ${green}, ${blue}, ${TRANSPARENCY})`
     }
     private draw() {
         CONTEXT.fillStyle = this.color;
@@ -56,7 +56,7 @@ export class Explosion {
         const red: number = randomize(200, 255);
         const green: number = randomize(150, 200);
         const blue: number = 0;
-        this.color = `rgba(${red}, ${green}, ${blue}, ${STAR_TRANSPARENCY})`
+        this.color = `rgba(${red}, ${green}, ${blue}, ${TRANSPARENCY})`
     }
 
 }

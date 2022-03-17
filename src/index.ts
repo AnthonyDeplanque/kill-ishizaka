@@ -21,7 +21,7 @@ import { displayExplosions } from "./game/displayExplosions";
 CANVAS.width = CANVAS.width - LIMIT_FOR_CANVAS;
 CANVAS.height = CANVAS.height - LIMIT_FOR_CANVAS * 2;
 
-export const DEBUG = true;
+export const DEBUG = false;
 
 export const keyboard = new Keyboard();
 export const mouse = new Mouse();
@@ -66,10 +66,12 @@ export function gameLoop(time: number): void {
     //TODO : made a condition to allow user to choose keyboard or mouse
 
     // if keyboard
-    shoot(keyboard.getKey().space);
+    const key = keyboard.getKey();
+    shoot(key.space);
     hero.update(keyboard);
 
     // if mouse
+
     shoot(mouse.getClick());
     hero.update(mouse);
 

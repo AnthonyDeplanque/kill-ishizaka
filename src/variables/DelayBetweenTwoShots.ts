@@ -1,1 +1,1 @@
-export const DELAY_BETWEEN_TWO_SHOTS = 150; // in milliseconds;
+export const DELAY_BETWEEN_TWO_SHOTS: number = 150; // in milliseconds;

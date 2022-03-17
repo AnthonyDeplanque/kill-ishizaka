@@ -4,9 +4,9 @@ import { CONTEXT } from "../canvas/Context";
 import { LIMIT_FOR_ENEMY_CREATION_IN_PIXELS } from "../variables/Limit";
 
 /**
- * the size in pixels for the creator
+ * the size in pixels for displaying the creator
  */
-export const POSITION_SIZE = 3
+export const POSITION_SIZE: number = 3
 
 /**
  * EnemyBuilter is an drawable or invisible x an y axis point

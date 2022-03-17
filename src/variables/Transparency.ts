@@ -1,1 +1,1 @@
-export const STAR_TRANSPARENCY = 0.8;
+export const TRANSPARENCY: number = 0.8;

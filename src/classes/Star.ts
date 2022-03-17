@@ -1,4 +1,4 @@
-import { STAR_TRANSPARENCY } from "../variables/Transparency";
+import { TRANSPARENCY } from "../variables/Transparency";
 import { CANVAS } from "../canvas/Canvas";
 import { CONTEXT } from "../canvas/Context";
 import randomize from "../utils/randomize";
@@ -25,7 +25,7 @@ export class Star {
         this.color_r = randomize(150, 255);
         this.color_g = randomize(150, 255);
         this.color_b = randomize(150, 255);
-        this.color = `rgba(${this.color_r}, ${this.color_g}, ${this.color_b}, ${STAR_TRANSPARENCY})`;
+        this.color = `rgba(${this.color_r}, ${this.color_g}, ${this.color_b}, ${TRANSPARENCY})`;
     };
 
     private draw() {

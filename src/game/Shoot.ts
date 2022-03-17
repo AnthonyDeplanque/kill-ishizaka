@@ -12,6 +12,15 @@ import { MAX_SIMULTANEOUS_SHOTS } from "../variables/MaxSimultaneousShots";
 
 
 let firingToggle: boolean = false;
+
+
+/**
+ * this function checks if we are firing, creates shots to display,
+ * checks if a shoot is colliding to an enemy or not , delete it 
+ * and create an explosion if they are colliding
+ * 
+ * @param toggle boolean to detect if we are firing or not
+ */
 export const shoot = (toggle: boolean) => {
 
 

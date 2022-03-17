@@ -1,5 +1,6 @@
 import randomize from "../../utils/randomize";
 import truncate from "../../utils/truncate";
+import { TRANSPARENCY } from "../../variables/Transparency";
 import { Coordinates } from "../types/Coordinates";
 
 export const BULLET_SPEED = 4;
@@ -35,7 +36,7 @@ export abstract class Shot {
     this.color_r = randomize(150, 255);
     this.color_g = randomize(150, 255);
     this.color_b = randomize(150, 255);
-    this.color = `rgb(${this.color_r}, ${this.color_g}, ${this.color_b})`;
+    this.color = `rgba(${this.color_r}, ${this.color_g}, ${this.color_b}, ${TRANSPARENCY})`;
   }
 
   protected draw(): void { };

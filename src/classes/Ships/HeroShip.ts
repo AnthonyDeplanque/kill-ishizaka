@@ -3,16 +3,14 @@ import { Keyboard } from "../inputs/Keyboard";
 import { Ship } from "./Ship";
 import { KeyboardInterface } from "../types/Keyboard";
 import { Mouse } from "../inputs/Mouse";
-import { Input } from "../inputs/Input";
 import { Inputs } from "../types/Inputs";
-import { mouse } from "../..";
 
 
 
 export class HeroShip extends Ship {
-    public static INIT_X = CANVAS.width / 2;
-    public static INIT_Y = (CANVAS.height / 4) * 3;
-    public static INIT_SPEED = 4;
+    public static readonly INIT_X = CANVAS.width / 2;
+    public static readonly INIT_Y = (CANVAS.height / 4) * 3;
+    public static readonly INIT_SPEED = 4;
 
     private speed: number;
 
@@ -87,7 +85,7 @@ export class HeroShip extends Ship {
             if (coordinates.y > (CANVAS.height - size.y)) coordinates.y = (CANVAS.height - size.y);
 
 
-            //get the distance between the mouse and the ball on both axes
+            //get the distance between the mouse and the ship on both axes
             //walk only the an eight of the distance to create a smooth fadeout
             let distanceX = (mousePosition.x - coordinates.x + (size.x / 2)) * .125;
             let distanceY = (mousePosition.y - coordinates.y + (size.y / 2)) * .125;
@@ -96,9 +94,9 @@ export class HeroShip extends Ship {
             const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
 
             //... and cap it at 5px
-            if (distance > 5) {
-                distanceX *= 5 / distance;
-                distanceY *= 5 / distance;
+            if (distance > Mouse.DEAD_ZONE) {
+                distanceX *= Mouse.DEAD_ZONE / distance;
+                distanceY *= Mouse.DEAD_ZONE / distance;
             }
 
             coordinates.x += distanceX;

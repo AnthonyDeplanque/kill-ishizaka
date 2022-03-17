@@ -21,7 +21,7 @@ export class EnemyShip extends Ship {
     ) {
         super(x, y, img);
         this.xSpeed = randomize(8, 16);
-        this.ySpeed = randomize(5, 15) / 10;
+        this.ySpeed = randomize(10, 15) / 5;
         this.xUpdate = randomize(1, 5);
         this.yUpdate = 0.5;
         this.xDirection = 0.5;
