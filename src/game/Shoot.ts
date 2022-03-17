@@ -1,14 +1,14 @@
+import { Explosion } from "../classes/Explosion";
 import { EnemyShip } from "../classes/Ships/EnemyShip";
 import { Laser } from "../classes/Shots/Laser";
 import { Coordinates } from "../classes/types/Coordinates";
 import { ObjectsPositionAndSize } from "../classes/types/ObjectsCoordinatesAndSizes";
-import { keyboard, hero, lasers, enemyBuilder } from "../index";
+import { hero, lasers, enemyBuilder, explosions } from "../index";
 import { isColliding } from "../utils/isColliding";
 import { DELAY_BETWEEN_TWO_SHOTS } from "../variables/DelayBetweenTwoShots";
 import ENEMY_IMAGE from "../variables/enemies/EnemyImage";
 import { ENEMY_SWARM } from "../variables/enemies/enemySwarmInit";
 import { MAX_SIMULTANEOUS_SHOTS } from "../variables/MaxSimultaneousShots";
-
 
 let firingToggle: boolean = false;
 export const shoot = (toggle: boolean) => {
@@ -48,7 +48,13 @@ export const shoot = (toggle: boolean) => {
           objectB: { position: laserPosition, size: laserSize }
         }
         if (isColliding(collisionDetector)) {
+
           const enemyBuilderPosition = enemyBuilder.getPosition()
+
+          const explosion = new Explosion(enemyPosition.x, enemyPosition.y);
+          explosions.push(explosion);
+
+
           ENEMY_SWARM.splice(indexEnemy, 1);
           lasers.splice(indexLaser, 1);
           const newEnemy = new EnemyShip(enemyBuilderPosition, 0, ENEMY_IMAGE);

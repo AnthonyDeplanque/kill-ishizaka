@@ -18,6 +18,7 @@
   },
   "scripts": {
     "watch": "npx tsc -w",
-    "build": "npx webpack --config webpack.config.js"
+    "build": "npx webpack --config webpack.config.js",
+    "start": "npx webpack serve"
   }
 }

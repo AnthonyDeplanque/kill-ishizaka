@@ -14,6 +14,8 @@ import { Laser } from "./classes/Shots/Laser";
 import { keyboardListener } from "./game/KeyboardListener";
 import { Mouse } from "./classes/inputs/Mouse";
 import { mouseListener } from "./game/MouseListener";
+import { Explosion } from "./classes/Explosion";
+import { displayExplosions } from "./game/displayExplosions";
 
 
 CANVAS.width = window.screen.width - LIMIT_FOR_CANVAS;
@@ -27,6 +29,8 @@ export const mouse = new Mouse();
 export const hero = new HeroShip(HeroShip.INIT_X, HeroShip.INIT_Y, HeroShip.INIT_SPEED, HERO_IMAGE);
 export const enemyBuilder = new EnemyBuilder();
 export const lasers: Laser[] = [];
+export const explosions: Explosion[] = [];
+
 
 const FRAMES_PER_SECOND = 60;  // Valid values are 60,30,20,15,10...
 // set the mim time to render the next frame
@@ -55,9 +59,11 @@ export function gameLoop(time: number): void {
     STARDUST.forEach((star: Star) => star.run());
 
     ENEMY_SWARM.forEach((enemy: EnemyShip) => enemy.run());
+    displayExplosions(explosions);
 
     enemyBuilder.run();
     DEBUG ? hero.drawHitbox() : hero.draw();
+    //TODO : made a condition to allow user to choose keyboard or mouse
 
     // if keyboard
     shoot(keyboard.getKey().space);
@@ -66,8 +72,6 @@ export function gameLoop(time: number): void {
     // if mouse
     shoot(mouse.getClick());
     hero.update(mouse);
-
-
 
     lastFrameTime = time; // remember the time of the rendered frame
     window.requestAnimationFrame(gameLoop); // get next frame

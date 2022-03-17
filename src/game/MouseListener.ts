@@ -2,11 +2,11 @@ import { mouse } from "..";
 
 const clickHandler = function (): void {
     mouse.setClick(true)
-    console.log(mouse.getClick())
+
 };
 const unclickHandler = function (): void {
     mouse.setClick(false)
-    console.log(mouse.getClick())
+
 };
 
 const mouseMoveHandler = (e: MouseEvent): void => {
@@ -14,7 +14,7 @@ const mouseMoveHandler = (e: MouseEvent): void => {
         x: e.clientX,
         y: e.clientY
     })
-    console.log(mouse.getPosition());
+
 }
 
 export const mouseListener = () => {

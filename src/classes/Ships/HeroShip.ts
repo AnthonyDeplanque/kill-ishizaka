@@ -89,18 +89,20 @@ export class HeroShip extends Ship {
 
             //get the distance between the mouse and the ball on both axes
             //walk only the an eight of the distance to create a smooth fadeout
-            var dx = (mousePosition.x - coordinates.x + (size.x / 2)) * .125;
-            var dy = (mousePosition.y - coordinates.y + (size.y / 2)) * .125;
+            let distanceX = (mousePosition.x - coordinates.x + (size.x / 2)) * .125;
+            let distanceY = (mousePosition.y - coordinates.y + (size.y / 2)) * .125;
+
             //calculate the distance this would move ...
-            var distance = Math.sqrt(dx * dx + dy * dy);
+            const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
 
             //... and cap it at 5px
             if (distance > 5) {
-                dx *= 5 / distance;
-                dy *= 5 / distance;
+                distanceX *= 5 / distance;
+                distanceY *= 5 / distance;
             }
-            coordinates.x += dx;
-            coordinates.y += dy;
+
+            coordinates.x += distanceX;
+            coordinates.y += distanceY;
             this.setPosition(coordinates)
         }
     }
