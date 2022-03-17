@@ -1,12 +1,18 @@
-import { KeyboardInterface } from "./types/Keyboard"
+import { KeyboardInterface } from "../types/Keyboard"
+import { Input } from "./Input"
 
-export class Keyboard {
+export class Keyboard extends Input {
     private left: boolean = false
     private right: boolean = false
     private up: boolean = false
     private down: boolean = false
     private space: boolean = false
     private enter: boolean = false
+
+    constructor() {
+        super();
+        this.input = 'keyboard';
+    }
 
     public getKey(): KeyboardInterface {
         return {
@@ -18,6 +24,8 @@ export class Keyboard {
             enter: this.enter
         }
     }
+
+
     public setKeyPressed(e: KeyboardEvent): void {
         switch (e.code) {
             case "Enter": //enter

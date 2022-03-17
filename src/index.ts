@@ -1,6 +1,6 @@
 import { CANVAS } from "./canvas/Canvas";
 import { HeroShip } from "./classes/Ships/HeroShip";
-import { Keyboard } from "./classes/Keyboard";
+import { Keyboard } from "./classes/inputs/Keyboard";
 import { LIMIT_FOR_CANVAS } from "./variables/Limit";
 import { clearCanvas } from "./canvas/clearCanvas";
 import { STARDUST } from "./variables/background/starDustInit";
@@ -12,18 +12,19 @@ import { EnemyShip } from "./classes/Ships/EnemyShip";
 import { shoot } from "./game/Shoot";
 import { Laser } from "./classes/Shots/Laser";
 import { keyboardListener } from "./game/KeyboardListener";
+import { Mouse } from "./classes/inputs/Mouse";
+import { mouseListener } from "./game/MouseListener";
 
 
 CANVAS.width = window.screen.width - LIMIT_FOR_CANVAS;
 CANVAS.height = window.screen.height - LIMIT_FOR_CANVAS * 2;
 
-const initX = CANVAS.width / 2; // Initial position of the hero's ship (x)
-const initY = (CANVAS.height / 4) * 3; // Initial position of the hero's ship (y)
-
 export const DEBUG = false;
 
 export const keyboard = new Keyboard();
-export const hero = new HeroShip(initX, initY, 4, HERO_IMAGE);
+export const mouse = new Mouse();
+
+export const hero = new HeroShip(HeroShip.INIT_X, HeroShip.INIT_Y, HeroShip.INIT_SPEED, HERO_IMAGE);
 export const enemyBuilder = new EnemyBuilder();
 export const lasers: Laser[] = [];
 
@@ -33,6 +34,7 @@ const FRAME_MIN_TIME = (1000 / 60) * (60 / FRAMES_PER_SECOND) - (1000 / 60) * 0.
 let lastFrameTime = 0;  // the last frame time
 
 keyboardListener(keyboard);
+mouseListener();
 
 /**
  * this function clear the canvas and initiate a new image
@@ -54,13 +56,18 @@ export function gameLoop(time: number): void {
 
     ENEMY_SWARM.forEach((enemy: EnemyShip) => enemy.run());
 
-    const keyboardShoot = keyboard.getKey().space;
-    shoot(keyboardShoot);
-
+    enemyBuilder.run();
     DEBUG ? hero.drawHitbox() : hero.draw();
+
+    // if keyboard
+    shoot(keyboard.getKey().space);
     hero.update(keyboard);
 
-    enemyBuilder.run();
+    // if mouse
+    shoot(mouse.getClick());
+    hero.update(mouse);
+
+
 
     lastFrameTime = time; // remember the time of the rendered frame
     window.requestAnimationFrame(gameLoop); // get next frame

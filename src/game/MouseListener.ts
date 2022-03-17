@@ -1,19 +1,25 @@
-import { Coordinates } from "../classes/types/Coordinates";
+import { mouse } from "..";
 
-var clickHandler = function (e: MouseEvent): void {
-
+const clickHandler = function (): void {
+    mouse.setClick(true)
+    console.log(mouse.getClick())
+};
+const unclickHandler = function (): void {
+    mouse.setClick(false)
+    console.log(mouse.getClick())
 };
 
-
-const mouseMoveHandler = (e: MouseEvent): Coordinates => {
-    return {
-        x: e.pageX,
-        y: e.pageY
-    }
+const mouseMoveHandler = (e: MouseEvent): void => {
+    mouse.setPosition({
+        x: e.clientX,
+        y: e.clientY
+    })
+    console.log(mouse.getPosition());
 }
 
 export const mouseListener = () => {
-    document.addEventListener("click", (e: MouseEvent) => clickHandler(e));
+    document.addEventListener("mousedown", () => clickHandler());
+    document.addEventListener("mouseup", () => unclickHandler());
     document.addEventListener("mousemove", (e: MouseEvent) => mouseMoveHandler(e));
 }
 
