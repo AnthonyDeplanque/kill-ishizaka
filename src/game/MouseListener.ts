@@ -1,4 +1,5 @@
 import { mouse } from "..";
+import { CANVAS } from "../canvas/Canvas";
 
 const clickHandler = function (): void {
     mouse.setClick(true)
@@ -11,15 +12,15 @@ const unclickHandler = function (): void {
 
 const mouseMoveHandler = (e: MouseEvent): void => {
     mouse.setPosition({
-        x: e.clientX,
-        y: e.clientY
+        x: e.offsetX,
+        y: e.offsetY
     })
 
 }
 
 export const mouseListener = () => {
-    document.addEventListener("mousedown", () => clickHandler());
-    document.addEventListener("mouseup", () => unclickHandler());
-    document.addEventListener("mousemove", (e: MouseEvent) => mouseMoveHandler(e));
+    CANVAS.addEventListener("mousedown", () => clickHandler());
+    CANVAS.addEventListener("mouseup", () => unclickHandler());
+    CANVAS.addEventListener("mousemove", (e: MouseEvent) => mouseMoveHandler(e));
 }
 

@@ -1,5 +1,6 @@
 import { DEBUG } from "../..";
 import { CONTEXT } from "../../canvas/Context";
+import truncate from "../../utils/truncate";
 import { Coordinates } from "../types/Coordinates";
 
 export abstract class Ship {
@@ -37,8 +38,8 @@ export abstract class Ship {
 
     public getPosition(): Coordinates {
         return {
-            x: this.x,
-            y: this.y
+            x: truncate(this.x),
+            y: truncate(this.y)
         }
     }
     public setPosition(coordinates: Coordinates): void {
@@ -48,8 +49,8 @@ export abstract class Ship {
 
     public getSize(): Coordinates {
         return {
-            x: this.xSize,
-            y: this.ySize
+            x: truncate(this.xSize),
+            y: truncate(this.ySize)
         }
     }
 

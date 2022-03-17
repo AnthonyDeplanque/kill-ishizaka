@@ -18,10 +18,10 @@ import { Explosion } from "./classes/Explosion";
 import { displayExplosions } from "./game/displayExplosions";
 
 
-CANVAS.width = window.screen.width - LIMIT_FOR_CANVAS;
-CANVAS.height = window.screen.height - LIMIT_FOR_CANVAS * 2;
+CANVAS.width = CANVAS.width - LIMIT_FOR_CANVAS;
+CANVAS.height = CANVAS.height - LIMIT_FOR_CANVAS * 2;
 
-export const DEBUG = false;
+export const DEBUG = true;
 
 export const keyboard = new Keyboard();
 export const mouse = new Mouse();

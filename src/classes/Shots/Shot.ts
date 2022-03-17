@@ -1,4 +1,5 @@
 import randomize from "../../utils/randomize";
+import truncate from "../../utils/truncate";
 import { Coordinates } from "../types/Coordinates";
 
 export const BULLET_SPEED = 4;
@@ -48,8 +49,8 @@ export abstract class Shot {
 
   public getPosition(): Coordinates {
     return {
-      x: this.x,
-      y: this.y
+      x: truncate(this.x),
+      y: truncate(this.y)
     };
   };
 

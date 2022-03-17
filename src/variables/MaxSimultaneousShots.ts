@@ -1,1 +1,1 @@
-export const MAX_SIMULTANEOUS_SHOTS = 2;
+export const MAX_SIMULTANEOUS_SHOTS = 3;
