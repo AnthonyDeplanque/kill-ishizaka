@@ -1,1 +1,1 @@
-export const TRANSPARENCY: number = 0.8;
+export const TRANSPARENCY: number = 0.6;

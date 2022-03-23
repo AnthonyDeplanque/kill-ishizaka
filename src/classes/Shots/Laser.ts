@@ -1,15 +1,17 @@
 import { CONTEXT } from "../../canvas/Context";
-import truncate from "../../utils/truncate";
 import { Coordinates } from "../types/Coordinates";
 import { Shot } from "./Shot";
 
 export class Laser extends Shot {
+
+  public static readonly LASER_SIZE_X = 6;
+  public static readonly LASER_SIZE_Y = 30;
+
   private readonly xSize: number;
   private readonly ySize: number;
   private readonly xSpeed: number;
   private readonly ySpeed: number;
 
-  public static readonly LASER_SIZE_X = 6;
 
   constructor(
     x: number,
@@ -19,9 +21,9 @@ export class Laser extends Shot {
   ) {
     super(x, y, initialPower, powerMultiplier);
     this.xSize = Laser.LASER_SIZE_X;
-    this.ySize = 30;
+    this.ySize = Laser.LASER_SIZE_Y;
     this.xSpeed = 0;
-    this.ySpeed = 12;
+    this.ySpeed = 10;
   }
 
   protected draw(): void {
@@ -41,15 +43,15 @@ export class Laser extends Shot {
 
   public getSize(): Coordinates {
     return {
-      x: truncate(this.xSize),
-      y: truncate(this.ySize)
+      x: this.xSize,
+      y: this.ySize
     }
   }
 
   public getSpeed(): Coordinates {
     return {
-      x: truncate(this.xSpeed),
-      y: truncate(this.ySpeed)
+      x: this.xSpeed,
+      y: this.ySpeed
     }
   }
 

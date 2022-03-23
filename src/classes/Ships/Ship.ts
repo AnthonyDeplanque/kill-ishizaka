@@ -1,6 +1,5 @@
 import { DEBUG } from "../..";
 import { CONTEXT } from "../../canvas/Context";
-import truncate from "../../utils/truncate";
 import { Coordinates } from "../types/Coordinates";
 
 export abstract class Ship {
@@ -32,14 +31,15 @@ export abstract class Ship {
     public update(param?: unknown): void { }
 
     public run(): void {
-        DEBUG ? this.drawHitbox() : this.draw();
+        DEBUG && this.drawHitbox()
+        this.draw();
         this.update();
     }
 
     public getPosition(): Coordinates {
         return {
-            x: truncate(this.x),
-            y: truncate(this.y)
+            x: this.x,
+            y: this.y
         }
     }
     public setPosition(coordinates: Coordinates): void {
@@ -49,8 +49,8 @@ export abstract class Ship {
 
     public getSize(): Coordinates {
         return {
-            x: truncate(this.xSize),
-            y: truncate(this.ySize)
+            x: this.xSize,
+            y: this.ySize
         }
     }
 

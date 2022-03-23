@@ -1,5 +1,4 @@
 import randomize from "../../utils/randomize";
-import truncate from "../../utils/truncate";
 import { TRANSPARENCY } from "../../variables/Transparency";
 import { Coordinates } from "../types/Coordinates";
 
@@ -50,8 +49,8 @@ export abstract class Shot {
 
   public getPosition(): Coordinates {
     return {
-      x: truncate(this.x),
-      y: truncate(this.y)
+      x: this.x,
+      y: this.y
     };
   };
 
