@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+
     "allowJs": false,
     // "noUnusedLocals": true,                           /* Enable error reporting when a local variables aren't read. */
     // "noUnusedParameters": true,                       /* Raise an error when a function parameter isn't read */
@@ -13,7 +14,7 @@
     "allowUnreachableCode": false,
     /* Completeness */
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
-    //"skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
+    "skipLibCheck": true,                                 /* Skip type checking all .d.ts files. */
     // "strictBindCallApply": true,                      /* Check that the arguments for `bind`, `call`, and `apply` methods match the original function. */
     // "strictPropertyInitialization": true,             /* Check for class properties that are declared but not set in the constructor. */
     // "noImplicitThis": true,                           /* Enable error reporting when `this` is given the type `any`. */
@@ -104,6 +105,6 @@
     "./build/*",
     "./.history/*",
     "./style/*",
-    "./node_modules/*"
+    "./node_modules/"
   ]
 }

@@ -5,7 +5,7 @@ import randomize from "../../utils/randomize";
 import { LIMIT_FOR_CANVAS } from "../Limit";
 import ENEMY_IMAGE from "./EnemyImage";
 
-export const MAX_NUMBER_OF_ENEMIES: number = 1;
+export const MAX_NUMBER_OF_ENEMIES: number = 10;
 
 const enemySwarmInit = (): EnemyShip[] => {
   let arrayOfEnemies: EnemyShip[] = [];

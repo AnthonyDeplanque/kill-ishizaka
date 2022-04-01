@@ -32,7 +32,7 @@ export const lasers: Laser[] = [];
 export const explosions: Explosion[] = [];
 
 
-const FRAMES_PER_SECOND = 15;  // Valid values are 60,30,20,15,10...
+const FRAMES_PER_SECOND = 60;  // Valid values are 60,30,20,15,10...
 // set the mim time to render the next frame
 const FRAME_MIN_TIME = (1000 / 60) * (60 / FRAMES_PER_SECOND) - (1000 / 60) * 0.5;
 let lastFrameTime = 0;  // the last frame time
