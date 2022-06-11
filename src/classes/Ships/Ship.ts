@@ -3,11 +3,11 @@ import { CONTEXT } from "../../canvas/Context";
 import { Coordinates } from "../types/Coordinates";
 
 export abstract class Ship {
-  private x: number;
-  private y: number;
+  protected x: number;
+  protected y: number;
   private xSize: number;
   private ySize: number;
-  private readonly img?: HTMLImageElement;
+  protected readonly img?: HTMLImageElement;
 
   constructor(x: number, y: number, img?: HTMLImageElement) {
     this.x = x;
@@ -26,7 +26,7 @@ export abstract class Ship {
     CONTEXT.fillRect(this.x, this.y, this.xSize, this.ySize);
   }
 
-  public update(param?: unknown): void {}
+  public update(param?: unknown): void { }
 
   public run(): void {
     DEBUG && this.drawHitbox();

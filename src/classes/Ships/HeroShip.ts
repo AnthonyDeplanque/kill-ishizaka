@@ -4,6 +4,7 @@ import { Ship } from "./Ship";
 import { KeyboardInterface } from "../types/Keyboard";
 import { Mouse } from "../inputs/Mouse";
 import { Inputs } from "../types/Inputs";
+import { CONTEXT } from "../../canvas/Context";
 
 export class HeroShip extends Ship {
   public static readonly INIT_X = CANVAS.width / 2;
@@ -11,10 +12,18 @@ export class HeroShip extends Ship {
   public static readonly INIT_SPEED = 4;
 
   private speed: number;
+  private alive: boolean = true;
 
   constructor(x: number, y: number, speed: number, img?: HTMLImageElement) {
     super(x, y, img);
     this.speed = speed;
+  }
+
+  public isAlive(): boolean {
+    return this.alive;
+  }
+  public setAlive(value: boolean) {
+    this.alive = value;
   }
 
   public getSpeed(): number {
@@ -29,7 +38,10 @@ export class HeroShip extends Ship {
     if (input.getInput() === "keyboard") {
       const speed = this.getSpeed();
       const key: KeyboardInterface = (input as Keyboard).getKey();
+
       //TODO : how to switch with an object ?
+      // if (this.isAlive()) {
+
       if (key.left) {
         if (coordinates.x > 0) {
           coordinates.x -= speed;
@@ -94,6 +106,14 @@ export class HeroShip extends Ship {
       coordinates.x += distanceX;
       coordinates.y += distanceY;
       this.setPosition(coordinates);
+
+    }
+  }
+  // }
+
+  public draw(): void {
+    if (this.isAlive()) {
+      CONTEXT.drawImage(this.img!, this.x, this.y);
     }
   }
 }

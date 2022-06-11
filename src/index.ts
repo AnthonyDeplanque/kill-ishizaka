@@ -16,6 +16,7 @@ import { Mouse } from "./classes/inputs/Mouse";
 import { mouseListener } from "./game/MouseListener";
 import { Explosion } from "./classes/Explosion";
 import { displayExplosions } from "./game/displayExplosions";
+import { heroCollision } from "./game/HeroCollision";
 
 CANVAS.width = CANVAS.width - LIMIT_FOR_CANVAS;
 CANVAS.height = CANVAS.height - LIMIT_FOR_CANVAS * 2;
@@ -25,7 +26,7 @@ export const DEBUG = false;
 export const keyboard = new Keyboard();
 export const mouse = new Mouse();
 
-export const hero = new HeroShip(
+export const hero: HeroShip = new HeroShip(
   HeroShip.INIT_X,
   HeroShip.INIT_Y,
   HeroShip.INIT_SPEED,
@@ -61,8 +62,14 @@ export function gameLoop(time: number): void {
 
   STARDUST.forEach((star: Star) => star.run());
 
-  ENEMY_SWARM.forEach((enemy: EnemyShip) => enemy.run());
+  ENEMY_SWARM.forEach((enemy: EnemyShip) => {
+    enemy.run();
+    heroCollision(enemy);
+  });
+
+
   displayExplosions(explosions);
+
 
   enemyBuilder.run();
   DEBUG ? hero.drawHitbox() : hero.draw();

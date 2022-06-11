@@ -13,20 +13,20 @@ export const isColliding = (
   objectB: PositionAndSize
 ): boolean => {
   if (
-    ((Math.floor(objectA.position.x) >= Math.floor(objectB.position.x) &&
-      Math.floor(objectA.position.x) <=
-        Math.floor(objectB.position.x) + Math.floor(objectB.size.x)) ||
-      (Math.floor(objectA.position.x) + Math.floor(objectA.size.x) >=
-        Math.floor(objectB.position.x) &&
-        Math.floor(objectA.position.x) + Math.floor(objectA.size.x) <=
-          Math.floor(objectB.position.x) + Math.floor(objectB.size.x))) &&
-    ((Math.floor(objectA.position.y) >= Math.floor(objectB.position.y) &&
-      Math.floor(objectA.position.y) <=
-        Math.floor(objectB.position.y) + Math.floor(objectB.size.y)) ||
-      (Math.floor(objectA.position.y) + Math.floor(objectA.size.y) >=
-        Math.floor(objectB.position.y) &&
-        Math.floor(objectA.position.y) + Math.floor(objectA.size.y) <=
-          Math.floor(objectB.position.y) + Math.floor(objectB.size.y)))
+    ((Math.trunc(objectA.position.x) >= Math.trunc(objectB.position.x) &&
+      Math.trunc(objectA.position.x) <=
+      Math.trunc(objectB.position.x) + Math.trunc(objectB.size.x)) ||
+      (Math.trunc(objectA.position.x) + Math.trunc(objectA.size.x) >=
+        Math.trunc(objectB.position.x) &&
+        Math.trunc(objectA.position.x) + Math.trunc(objectA.size.x) <=
+        Math.trunc(objectB.position.x) + Math.trunc(objectB.size.x))) &&
+    ((Math.trunc(objectA.position.y) >= Math.trunc(objectB.position.y) &&
+      Math.trunc(objectA.position.y) <=
+      Math.trunc(objectB.position.y) + Math.trunc(objectB.size.y)) ||
+      (Math.trunc(objectA.position.y) + Math.trunc(objectA.size.y) >=
+        Math.trunc(objectB.position.y) &&
+        Math.trunc(objectA.position.y) + Math.trunc(objectA.size.y) <=
+        Math.trunc(objectB.position.y) + Math.trunc(objectB.size.y)))
   ) {
     DEBUG && console.log("collide!");
     return true;

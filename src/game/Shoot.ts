@@ -25,30 +25,30 @@ let firingToggle: boolean = false;
 export const shoot = (toggle: boolean) => {
   const heroPosition: Coordinates = hero.getPosition();
   const heroSize: Coordinates = hero.getSize();
+  if (hero.isAlive()) {
+    if (toggle) {
+      if (firingToggle === false) {
+        if (lasers.length < (DEBUG ? 1 : MAX_SIMULTANEOUS_SHOTS)) {
+          firingToggle = true;
+          const laser = new Laser(
+            heroPosition.x + heroSize.x / 2 - Laser.LASER_SIZE_X / 2,
+            heroPosition.y - Laser.LASER_SIZE_Y
+          );
+          lasers.push(laser);
 
-  if (toggle) {
-    if (firingToggle === false) {
-      if (lasers.length < (DEBUG ? 1 : MAX_SIMULTANEOUS_SHOTS)) {
-        firingToggle = true;
-        const laser = new Laser(
-          heroPosition.x + heroSize.x / 2 - Laser.LASER_SIZE_X / 2,
-          heroPosition.y - Laser.LASER_SIZE_Y
-        );
-        lasers.push(laser);
+          // DEBUG && ENEMY_SWARM.forEach((enemy: EnemyShip) => {
+          //   const enemyPosition = enemy.getPosition();
+          //   const enemySize = enemy.getSize();
+          //   console.log(`Enemy=> x:${enemyPosition.x}-${enemySize.x + enemyPosition.x}`);
+          // });
 
-        // DEBUG && ENEMY_SWARM.forEach((enemy: EnemyShip) => {
-        //   const enemyPosition = enemy.getPosition();
-        //   const enemySize = enemy.getSize();
-        //   console.log(`Enemy=> x:${enemyPosition.x}-${enemySize.x + enemyPosition.x}`);
-        // });
-
-        setTimeout((): void => {
-          firingToggle = false;
-        }, DELAY_BETWEEN_TWO_SHOTS);
+          setTimeout((): void => {
+            firingToggle = false;
+          }, DELAY_BETWEEN_TWO_SHOTS);
+        }
       }
     }
   }
-
   if (lasers.length && lasers.length > 0) {
     lasers.forEach((laser: Laser, indexLaser: number) => {
       const laserPosition = laser.getPosition();
@@ -60,8 +60,7 @@ export const shoot = (toggle: boolean) => {
 
       DEBUG &&
         console.log(
-          `laser x:${laserPosition.x}/${laserPosition.x + laserSize.x} - y:${
-            laserPosition.y
+          `laser x:${laserPosition.x}/${laserPosition.x + laserSize.x} - y:${laserPosition.y
           }/${laserPosition.y + laserSize.y}`
         );
 
@@ -71,8 +70,7 @@ export const shoot = (toggle: boolean) => {
 
         DEBUG &&
           console.log(
-            `enemy x:${enemyPosition.x}/${enemyPosition.x + enemySize.x} - y:${
-              enemyPosition.y
+            `enemy x:${enemyPosition.x}/${enemyPosition.x + enemySize.x} - y:${enemyPosition.y
             }/${enemyPosition.y + enemySize.y}`
           );
 
