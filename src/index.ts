@@ -62,14 +62,13 @@ export function gameLoop(time: number): void {
 
   STARDUST.forEach((star: Star) => star.run());
 
+  //for each enemy in the swarm, we run the enemy script and we check if the hero collides the enemy
   ENEMY_SWARM.forEach((enemy: EnemyShip) => {
     enemy.run();
     heroCollision(enemy);
   });
 
-
   displayExplosions(explosions);
-
 
   enemyBuilder.run();
   DEBUG ? hero.drawHitbox() : hero.draw();

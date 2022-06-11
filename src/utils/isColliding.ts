@@ -1,8 +1,5 @@
 import { DEBUG } from "../index";
-import {
-  ObjectsPositionAndSize,
-  PositionAndSize,
-} from "../classes/types/ObjectsCoordinatesAndSizes";
+import { PositionAndSize } from "../classes/types/ObjectsCoordinatesAndSizes";
 
 /**
  * check if two objects are colliding or not
@@ -15,18 +12,18 @@ export const isColliding = (
   if (
     ((Math.trunc(objectA.position.x) >= Math.trunc(objectB.position.x) &&
       Math.trunc(objectA.position.x) <=
-      Math.trunc(objectB.position.x) + Math.trunc(objectB.size.x)) ||
+        Math.trunc(objectB.position.x) + Math.trunc(objectB.size.x)) ||
       (Math.trunc(objectA.position.x) + Math.trunc(objectA.size.x) >=
         Math.trunc(objectB.position.x) &&
         Math.trunc(objectA.position.x) + Math.trunc(objectA.size.x) <=
-        Math.trunc(objectB.position.x) + Math.trunc(objectB.size.x))) &&
+          Math.trunc(objectB.position.x) + Math.trunc(objectB.size.x))) &&
     ((Math.trunc(objectA.position.y) >= Math.trunc(objectB.position.y) &&
       Math.trunc(objectA.position.y) <=
-      Math.trunc(objectB.position.y) + Math.trunc(objectB.size.y)) ||
+        Math.trunc(objectB.position.y) + Math.trunc(objectB.size.y)) ||
       (Math.trunc(objectA.position.y) + Math.trunc(objectA.size.y) >=
         Math.trunc(objectB.position.y) &&
         Math.trunc(objectA.position.y) + Math.trunc(objectA.size.y) <=
-        Math.trunc(objectB.position.y) + Math.trunc(objectB.size.y)))
+          Math.trunc(objectB.position.y) + Math.trunc(objectB.size.y)))
   ) {
     DEBUG && console.log("collide!");
     return true;

@@ -106,7 +106,6 @@ export class HeroShip extends Ship {
       coordinates.x += distanceX;
       coordinates.y += distanceY;
       this.setPosition(coordinates);
-
     }
   }
   // }

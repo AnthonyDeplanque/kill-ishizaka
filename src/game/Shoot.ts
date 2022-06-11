@@ -2,10 +2,7 @@ import { Explosion } from "../classes/Explosion";
 import { EnemyShip } from "../classes/Ships/EnemyShip";
 import { Laser } from "../classes/Shots/Laser";
 import { Coordinates } from "../classes/types/Coordinates";
-import {
-  ObjectsPositionAndSize,
-  PositionAndSize,
-} from "../classes/types/ObjectsCoordinatesAndSizes";
+import { PositionAndSize } from "../classes/types/ObjectsCoordinatesAndSizes";
 import { hero, lasers, enemyBuilder, explosions, DEBUG } from "../index";
 import { isColliding } from "../utils/isColliding";
 import { DELAY_BETWEEN_TWO_SHOTS } from "../variables/DelayBetweenTwoShots";
@@ -60,7 +57,8 @@ export const shoot = (toggle: boolean) => {
 
       DEBUG &&
         console.log(
-          `laser x:${laserPosition.x}/${laserPosition.x + laserSize.x} - y:${laserPosition.y
+          `laser x:${laserPosition.x}/${laserPosition.x + laserSize.x} - y:${
+            laserPosition.y
           }/${laserPosition.y + laserSize.y}`
         );
 
@@ -70,7 +68,8 @@ export const shoot = (toggle: boolean) => {
 
         DEBUG &&
           console.log(
-            `enemy x:${enemyPosition.x}/${enemyPosition.x + enemySize.x} - y:${enemyPosition.y
+            `enemy x:${enemyPosition.x}/${enemyPosition.x + enemySize.x} - y:${
+              enemyPosition.y
             }/${enemyPosition.y + enemySize.y}`
           );
 

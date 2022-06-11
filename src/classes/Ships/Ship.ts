@@ -26,7 +26,7 @@ export abstract class Ship {
     CONTEXT.fillRect(this.x, this.y, this.xSize, this.ySize);
   }
 
-  public update(param?: unknown): void { }
+  public update(param?: unknown): void {}
 
   public run(): void {
     DEBUG && this.drawHitbox();
