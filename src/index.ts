@@ -17,7 +17,6 @@ import { mouseListener } from "./game/MouseListener";
 import { Explosion } from "./classes/Explosion";
 import { displayExplosions } from "./game/displayExplosions";
 
-
 CANVAS.width = CANVAS.width - LIMIT_FOR_CANVAS;
 CANVAS.height = CANVAS.height - LIMIT_FOR_CANVAS * 2;
 
@@ -26,57 +25,60 @@ export const DEBUG = false;
 export const keyboard = new Keyboard();
 export const mouse = new Mouse();
 
-export const hero = new HeroShip(HeroShip.INIT_X, HeroShip.INIT_Y, HeroShip.INIT_SPEED, HERO_IMAGE);
+export const hero = new HeroShip(
+  HeroShip.INIT_X,
+  HeroShip.INIT_Y,
+  HeroShip.INIT_SPEED,
+  HERO_IMAGE
+);
 export const enemyBuilder = new EnemyBuilder();
 export const lasers: Laser[] = [];
 export const explosions: Explosion[] = [];
 
-
-const FRAMES_PER_SECOND = 60;  // Valid values are 60,30,20,15,10...
+const FRAMES_PER_SECOND = 60; // Valid values are 60,30,20,15,10...
 // set the mim time to render the next frame
-const FRAME_MIN_TIME = (1000 / 60) * (60 / FRAMES_PER_SECOND) - (1000 / 60) * 0.5;
-let lastFrameTime = 0;  // the last frame time
+const FRAME_MIN_TIME =
+  (1000 / 60) * (60 / FRAMES_PER_SECOND) - (1000 / 60) * 0.5;
+let lastFrameTime = 0; // the last frame time
 
 keyboardListener(keyboard);
 mouseListener();
 
 /**
  * this function clear the canvas and initiate a new image
- * for the canvas. this function is Mandatory to run 
+ * for the canvas. this function is Mandatory to run
  * properly the canvas
  */
 export function gameLoop(time: number): void {
+  if (time - lastFrameTime < FRAME_MIN_TIME) {
+    //skip the frame if the call is too early
+    window.requestAnimationFrame(gameLoop);
+    return;
+  }
+  // render the frame
 
-    if (time - lastFrameTime < FRAME_MIN_TIME) { //skip the frame if the call is too early
-        window.requestAnimationFrame(gameLoop);
-        return;
-    }
-    // render the frame
+  clearCanvas();
 
-    clearCanvas();
+  STARDUST.forEach((star: Star) => star.run());
 
+  ENEMY_SWARM.forEach((enemy: EnemyShip) => enemy.run());
+  displayExplosions(explosions);
 
-    STARDUST.forEach((star: Star) => star.run());
+  enemyBuilder.run();
+  DEBUG ? hero.drawHitbox() : hero.draw();
+  //TODO : made a condition to allow user to choose keyboard or mouse
 
-    ENEMY_SWARM.forEach((enemy: EnemyShip) => enemy.run());
-    displayExplosions(explosions);
+  // if keyboard
+  const key = keyboard.getKey();
+  shoot(key.space);
+  hero.update(keyboard);
 
-    enemyBuilder.run();
-    DEBUG ? hero.drawHitbox() : hero.draw();
-    //TODO : made a condition to allow user to choose keyboard or mouse
+  // if mouse
 
-    // if keyboard
-    const key = keyboard.getKey();
-    shoot(key.space);
-    hero.update(keyboard);
+  shoot(mouse.getClick());
+  hero.update(mouse);
 
-    // if mouse
-
-    shoot(mouse.getClick());
-    hero.update(mouse);
-
-    lastFrameTime = time; // remember the time of the rendered frame
-    window.requestAnimationFrame(gameLoop); // get next frame
-
+  lastFrameTime = time; // remember the time of the rendered frame
+  window.requestAnimationFrame(gameLoop); // get next frame
 }
-window.requestAnimationFrame(gameLoop)
+window.requestAnimationFrame(gameLoop);

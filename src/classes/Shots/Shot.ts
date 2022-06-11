@@ -5,7 +5,6 @@ import { Coordinates } from "../types/Coordinates";
 export const BULLET_SPEED = 4;
 
 export abstract class Shot {
-
   private x: number;
   private y: number;
   private readonly color_r: number;
@@ -14,50 +13,49 @@ export abstract class Shot {
   private readonly color: string;
   private initialPower: number | undefined;
   private powerMultiplier: number | undefined;
-  private power: number
+  private power: number;
 
   constructor(
     x: number,
     y: number,
     initialPower?: number,
-    powerMultiplier?: number,
+    powerMultiplier?: number
   ) {
     this.x = x;
     this.y = y;
     this.initialPower = initialPower;
     this.powerMultiplier = powerMultiplier;
-    this.power =
-      initialPower
-        ? powerMultiplier
-          ? initialPower * powerMultiplier
-          : initialPower
-        : 1
+    this.power = initialPower
+      ? powerMultiplier
+        ? initialPower * powerMultiplier
+        : initialPower
+      : 1;
     this.color_r = randomize(150, 255);
     this.color_g = randomize(150, 255);
     this.color_b = randomize(150, 255);
     this.color = `rgba(${this.color_r}, ${this.color_g}, ${this.color_b}, ${TRANSPARENCY})`;
   }
 
-  protected draw(): void { };
+  protected draw(): void {}
 
-  protected update(): void { };
+  protected update(): void {}
 
   public run(): void {
     this.draw();
     this.update();
-  };
+  }
 
   public getPosition(): Coordinates {
     return {
       x: this.x,
-      y: this.y
+      y: this.y,
     };
-  };
+  }
 
   public setPosition(position: Coordinates): void {
     this.x = position.x;
     this.y = position.y;
-  };
+  }
 
   public getPower(): number {
     return this.power;

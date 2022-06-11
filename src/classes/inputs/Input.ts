@@ -1,11 +1,9 @@
-import { InputType } from "../types/Inputs"
+import { InputType } from "../types/Inputs";
 
 export abstract class Input {
+  protected input?: InputType;
 
-    protected input?: InputType
-
-    public getInput(): string {
-        return this.input!
-    };
-
+  public getInput(): string {
+    return this.input!;
+  }
 }

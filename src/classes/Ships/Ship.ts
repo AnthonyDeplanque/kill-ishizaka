@@ -3,57 +3,52 @@ import { CONTEXT } from "../../canvas/Context";
 import { Coordinates } from "../types/Coordinates";
 
 export abstract class Ship {
+  private x: number;
+  private y: number;
+  private xSize: number;
+  private ySize: number;
+  private readonly img?: HTMLImageElement;
 
-    private x: number;
-    private y: number;
-    private xSize: number;
-    private ySize: number;
-    private readonly img?: HTMLImageElement;
+  constructor(x: number, y: number, img?: HTMLImageElement) {
+    this.x = x;
+    this.y = y;
+    this.img = img;
+    this.xSize = img?.width ? img?.width : 30;
+    this.ySize = img?.height ? img?.height : 30;
+  }
 
+  public draw(): void {
+    CONTEXT.drawImage(this.img!, this.x, this.y);
+  }
 
-    constructor(x: number, y: number, img?: HTMLImageElement) {
-        this.x = x;
-        this.y = y;
-        this.img = img;
-        this.xSize = img?.width ? img?.width : 30;
-        this.ySize = img?.height ? img?.height : 30;
-    }
+  public drawHitbox(): void {
+    CONTEXT.fillStyle = "rgba(255,0,0,0.5)";
+    CONTEXT.fillRect(this.x, this.y, this.xSize, this.ySize);
+  }
 
-    public draw(): void {
-        CONTEXT.drawImage(this.img!, this.x, this.y)
-    }
+  public update(param?: unknown): void {}
 
-    public drawHitbox(): void {
-        CONTEXT.fillStyle = "rgba(255,0,0,0.5)";
-        CONTEXT.fillRect(this.x, this.y, this.xSize, this.ySize)
-    }
+  public run(): void {
+    DEBUG && this.drawHitbox();
+    this.draw();
+    this.update();
+  }
 
-    public update(param?: unknown): void { }
+  public getPosition(): Coordinates {
+    return {
+      x: this.x,
+      y: this.y,
+    };
+  }
+  public setPosition(coordinates: Coordinates): void {
+    this.x = coordinates.x;
+    this.y = coordinates.y;
+  }
 
-    public run(): void {
-        DEBUG && this.drawHitbox()
-        this.draw();
-        this.update();
-    }
-
-    public getPosition(): Coordinates {
-        return {
-            x: this.x,
-            y: this.y
-        }
-    }
-    public setPosition(coordinates: Coordinates): void {
-        this.x = coordinates.x;
-        this.y = coordinates.y;
-    }
-
-    public getSize(): Coordinates {
-        return {
-            x: this.xSize,
-            y: this.ySize
-        }
-    }
-
-
-
+  public getSize(): Coordinates {
+    return {
+      x: this.xSize,
+      y: this.ySize,
+    };
+  }
 }

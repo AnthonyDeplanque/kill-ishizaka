@@ -4,7 +4,7 @@ this is a full refacto of the previous [Destroy Ishizaka](https://github.com/Ant
 
 # How to make it work ?
 
-*Make sure you have nodeJs and npm/yarn on your computer*
+_Make sure you have nodeJs and npm/yarn on your computer_
 
 clone the repo,
 

@@ -3,7 +3,6 @@ import { Coordinates } from "../types/Coordinates";
 import { Shot } from "./Shot";
 
 export class Laser extends Shot {
-
   public static readonly LASER_SIZE_X = 6;
   public static readonly LASER_SIZE_Y = 30;
 
@@ -11,7 +10,6 @@ export class Laser extends Shot {
   private readonly ySize: number;
   private readonly xSpeed: number;
   private readonly ySpeed: number;
-
 
   constructor(
     x: number,
@@ -30,7 +28,7 @@ export class Laser extends Shot {
     const position = this.getPosition();
     const size = this.getSize();
     CONTEXT.fillStyle = this.getColor();
-    CONTEXT.fillRect(position.x, position.y, size.x, size.y)
+    CONTEXT.fillRect(position.x, position.y, size.x, size.y);
   }
 
   protected update(): void {
@@ -44,15 +42,14 @@ export class Laser extends Shot {
   public getSize(): Coordinates {
     return {
       x: this.xSize,
-      y: this.ySize
-    }
+      y: this.ySize,
+    };
   }
 
   public getSpeed(): Coordinates {
     return {
       x: this.xSpeed,
-      y: this.ySpeed
-    }
+      y: this.ySpeed,
+    };
   }
-
 }

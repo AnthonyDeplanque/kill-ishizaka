@@ -1,9 +1,9 @@
-const path = require('path')
-const sitePath = path.resolve(__dirname, './')
+const path = require("path");
+const sitePath = path.resolve(__dirname, "./");
 
 // TODO => check for the hot reload
 module.exports = {
-  mode: 'development',
+  mode: "development",
 
   devServer: {
     static: {
@@ -20,22 +20,22 @@ module.exports = {
       },
       {
         test: /(?<!\.d)\.ts$/,
-        use: 'ts-loader',
+        use: "ts-loader",
         exclude: /node_modules/,
       },
       {
         test: /\.png$/,
-        use: 'url-loader?mimetype=image/png',
+        use: "url-loader?mimetype=image/png",
       },
     ],
   },
   resolve: {
-    extensions: ['.ts', '.d.ts', '.js', '.css', '.png'],
+    extensions: [".ts", ".d.ts", ".js", ".css", ".png"],
     alias: {},
   },
-  entry: { main: './src/index.ts' },
+  entry: { main: "./src/index.ts" },
   output: {
-    filename: 'index.js',
-    path: path.resolve(__dirname, 'dist'),
+    filename: "index.js",
+    path: path.resolve(__dirname, "dist"),
   },
-}
+};
