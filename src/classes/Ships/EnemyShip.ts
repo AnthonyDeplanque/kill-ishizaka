@@ -4,6 +4,7 @@ import randomize from "../../utils/randomize";
 import { sinusoidalPattern } from "../../utils/sinusoidalPattern";
 import { Coordinates } from "../types/Coordinates";
 import { Ship } from "./Ship";
+import { AXIS } from "../types/Axis";
 
 export class EnemyShip extends Ship {
   private xSpeed: number;
@@ -38,8 +39,8 @@ export class EnemyShip extends Ship {
     let patternX: { update: Coordinates; direction: Coordinates },
       patternY: { update: Coordinates; direction: Coordinates };
 
-    patternX = sinusoidalPattern(this, "x", 5, -5);
-    patternY = sinusoidalPattern(this, "y", 6, -1);
+    patternX = sinusoidalPattern(this, AXIS.X, 5, -5);
+    patternY = sinusoidalPattern(this, AXIS.Y, 6, -1);
 
     update.x = patternX!.update.x;
     direction.x = patternX!.direction.x;

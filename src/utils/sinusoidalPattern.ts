@@ -1,7 +1,8 @@
 import { EnemyShip } from "../classes/Ships/EnemyShip";
+import { AXIS } from "../classes/types/Axis";
 import { Coordinates } from "../classes/types/Coordinates";
 
-export type Axis = "x" | "y";
+// export type Axis = "x" | "y";
 
 /**
  * this function create a pattern for enemies movement
@@ -15,7 +16,7 @@ export type Axis = "x" | "y";
  */
 export const sinusoidalPattern = (
   object: EnemyShip,
-  axis: Axis,
+  axis: AXIS,
   highLimit: number,
   lowLimit: number
 ): { update: Coordinates; direction: Coordinates } => {
