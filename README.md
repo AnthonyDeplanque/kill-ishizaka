@@ -1,10 +1,12 @@
 # kill-ishizaka
 
-this is a full refacto of the previous [Destroy Ishizaka](https://github.com/AnthonyDeplanque/Destroy-ishizaka-vercel) project
+this is a full _Work-In-Progress_ refacto of the previous [Destroy Ishizaka](https://github.com/AnthonyDeplanque/Destroy-ishizaka-vercel) project
+
+I've decided to recode it in typescript with my new knowledges
 
 # How to make it work ?
 
-_Make sure you have nodeJs and npm/yarn on your computer_
+_Make sure you have nodeJs and npm/yarn on your computer !!_
 
 clone the repo,
 
