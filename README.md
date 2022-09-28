@@ -13,7 +13,9 @@ clone the repo,
 in the terminal, type `npm i` or `yarn` to install dependancies,
 
 
-`./launch.sh` will delete previous compilations, compile typescrips and launch server
+`./launch.sh --test` will delete previous compilations, compile typescrips and launch server
+
+you can also type `./launch.sh --debug` to try a debug mode !
 
 you can access the game on [localhost:8080](http://localhost:8080);
 
