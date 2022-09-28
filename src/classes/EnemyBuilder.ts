@@ -45,9 +45,9 @@ export class EnemyBuilder {
         }
     }
     public run() {
-        // if (DEBUG) {
-        this.draw();
-        // }
+        if (DEBUG) {
+            this.draw();
+        }
         this.update();
     }
     public getPosition(): number {
