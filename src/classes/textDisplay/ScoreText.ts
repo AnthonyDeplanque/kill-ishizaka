@@ -11,13 +11,13 @@ export class ScoreText extends TextDisplay {
         super(displayWidth, displayHeight, 32, FONT_FAMILY.ARIAL!, "rgba(255,255,255,1)");
         console.log(displayHeight, displayWidth, CANVAS.height, CANVAS.width);
     }
-    draw(): void {
+    protected draw(): void {
         super.draw();
     }
-    update(): void {
+    protected update(): void {
         super.setText(`Score : ${SCORE.toString()}`);
     }
-    run(): void {
+    public run(): void {
         super.run();
     }
 }
