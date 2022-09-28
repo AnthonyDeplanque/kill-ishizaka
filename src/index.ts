@@ -17,6 +17,8 @@ import { mouseListener } from "./game/MouseListener";
 import { Explosion } from "./classes/Explosion";
 import { displayExplosions } from "./game/displayExplosions";
 import { heroCollision } from "./game/HeroCollision";
+import { ScoreText } from "./classes/textDisplay/ScoreText";
+import { scoreText } from "./variables/texts/scoreText";
 
 CANVAS.width = innerWidth - LIMIT_FOR_CANVAS;
 CANVAS.height = innerHeight - LIMIT_FOR_CANVAS / 2;
@@ -67,6 +69,7 @@ export function gameLoop(time: number): void {
     displayExplosions(explosions);
 
     enemyBuilder.run();
+    scoreText.run();
     DEBUG ? hero.drawHitbox() : hero.draw();
     //TODO : made a condition to allow user to choose keyboard or mouse
 
