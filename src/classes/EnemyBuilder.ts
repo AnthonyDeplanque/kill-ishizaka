@@ -14,7 +14,10 @@ export const POSITION_SIZE: number = 3;
  */
 export class EnemyBuilder {
     private x: number; // the position on x axis
-    private x_direction: number = 1; // direction is positive or negative to set direction to left or right
+    private x_direction: number = 1 | -1; // direction is positive or negative to set direction to left or right
+    private x_speed: number = 1;
+    private oldScore: number = SCORE;
+
     constructor() {
         this.x = LIMIT_FOR_ENEMY_CREATION_IN_PIXELS;
         this.x_direction = 1;
@@ -25,21 +28,26 @@ export class EnemyBuilder {
         CONTEXT.fillRect(this.x, LIMIT_FOR_ENEMY_CREATION_IN_PIXELS, POSITION_SIZE, POSITION_SIZE);
     }
     private update() {
-        this.x += this.x_direction + SCORE / 10;
-        if (this.x < LIMIT_FOR_ENEMY_CREATION_IN_PIXELS || this.x > CANVAS.width - LIMIT_FOR_ENEMY_CREATION_IN_PIXELS) {
-            if (this.x < LIMIT_FOR_ENEMY_CREATION_IN_PIXELS) {
-                this.x = LIMIT_FOR_ENEMY_CREATION_IN_PIXELS;
-            }
-            if (this.x > CANVAS.width - LIMIT_FOR_ENEMY_CREATION_IN_PIXELS) {
-                this.x = CANVAS.width - LIMIT_FOR_ENEMY_CREATION_IN_PIXELS;
-            }
+        // this.x += this.x_direction + SCORE / 100;
+        if (SCORE !== this.oldScore) {
+            this.oldScore = SCORE;
+            this.x_speed += this.oldScore / 100;
+        }
+        this.x += this.x_speed * this.x_direction;
+
+        if (this.x < LIMIT_FOR_ENEMY_CREATION_IN_PIXELS) {
+            this.x = LIMIT_FOR_ENEMY_CREATION_IN_PIXELS;
+            this.x_direction *= -1;
+        }
+        if (this.x > CANVAS.width - LIMIT_FOR_ENEMY_CREATION_IN_PIXELS) {
+            this.x = CANVAS.width - LIMIT_FOR_ENEMY_CREATION_IN_PIXELS;
             this.x_direction *= -1;
         }
     }
     public run() {
-        if (DEBUG) {
-            this.draw();
-        }
+        // if (DEBUG) {
+        this.draw();
+        // }
         this.update();
     }
     public getPosition(): number {
