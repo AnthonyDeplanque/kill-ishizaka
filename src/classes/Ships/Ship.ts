@@ -21,10 +21,7 @@ export abstract class Ship {
         CONTEXT.drawImage(this.img!, this.x, this.y);
     }
 
-    public drawHitbox(): void {
-        CONTEXT.fillStyle = "rgba(255,0,0,0.5)";
-        CONTEXT.fillRect(this.x, this.y, this.xSize, this.ySize);
-    }
+    public drawHitbox(): void {}
 
     public update(param?: unknown): void {}
 

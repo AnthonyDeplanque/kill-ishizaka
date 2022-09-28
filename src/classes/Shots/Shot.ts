@@ -1,4 +1,6 @@
+import { limitFloatDecimal } from "../../utils/limitFloatDecimal";
 import randomize from "../../utils/randomize";
+import { DEBUG } from "../../variables/DEBUG";
 import { TRANSPARENCY } from "../../variables/Transparency";
 import { Coordinates } from "../types/Coordinates";
 
@@ -24,7 +26,7 @@ export abstract class Shot {
         this.color_r = randomize(150, 255);
         this.color_g = randomize(150, 255);
         this.color_b = randomize(150, 255);
-        this.color = `rgba(${this.color_r}, ${this.color_g}, ${this.color_b}, ${TRANSPARENCY})`;
+        this.color = DEBUG ? "white" : `rgba(${this.color_r}, ${this.color_g}, ${this.color_b}, ${TRANSPARENCY})`;
     }
 
     protected draw(): void {}
@@ -44,8 +46,8 @@ export abstract class Shot {
     }
 
     public setPosition(position: Coordinates): void {
-        this.x = position.x;
-        this.y = position.y;
+        this.x = limitFloatDecimal(position.x);
+        this.y = limitFloatDecimal(position.y);
     }
 
     public getPower(): number {

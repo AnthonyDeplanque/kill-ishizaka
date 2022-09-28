@@ -6,6 +6,7 @@ import { Coordinates } from "../types/Coordinates";
 import { Ship } from "./Ship";
 import { AXIS } from "../types/Axis";
 import { limitFloatDecimal } from "../../utils/limitFloatDecimal";
+import { CONTEXT } from "../../canvas/Context";
 
 export class EnemyShip extends Ship {
     private xSpeed: number;
@@ -66,6 +67,12 @@ export class EnemyShip extends Ship {
         this.setUpdate(update);
         this.setDirection(direction);
         this.setPosition(position);
+    }
+    public drawHitbox(): void {
+        super.drawHitbox();
+        CONTEXT.fillStyle = "rgba(255,0,0,0.5)";
+        const size = this.getSize();
+        CONTEXT.fillRect(this.x, this.y, size.x, size.y);
     }
 
     public setSpeed(speed: Coordinates): void {

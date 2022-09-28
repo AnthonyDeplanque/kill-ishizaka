@@ -3,6 +3,7 @@ import { CANVAS } from "../canvas/Canvas";
 import { CONTEXT } from "../canvas/Context";
 import randomize from "../utils/randomize";
 import { STARS_MAX_SIZE, STARS_MIN_SIZE } from "../variables/StarsSize";
+import { DEBUG } from "../variables/DEBUG";
 
 export class Star {
     private x: number;
@@ -24,7 +25,7 @@ export class Star {
         this.color_r = randomize(150, 255);
         this.color_g = randomize(150, 255);
         this.color_b = randomize(150, 255);
-        this.color = `rgba(${this.color_r}, ${this.color_g}, ${this.color_b}, ${TRANSPARENCY})`;
+        this.color = DEBUG ? "white" : `rgba(${this.color_r}, ${this.color_g}, ${this.color_b}, ${TRANSPARENCY})`;
     }
 
     private draw() {
