@@ -19,11 +19,10 @@ import { displayExplosions } from "./game/displayExplosions";
 import { heroCollision } from "./game/HeroCollision";
 import { ScoreText } from "./classes/textDisplay/ScoreText";
 import { scoreText } from "./variables/texts/scoreText";
+import { DEBUG } from "./variables/DEBUG";
 
 CANVAS.width = innerWidth - LIMIT_FOR_CANVAS;
 CANVAS.height = innerHeight - LIMIT_FOR_CANVAS / 2;
-
-export const DEBUG = false;
 
 export const keyboard = new Keyboard();
 export const mouse = new Mouse();

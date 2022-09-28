@@ -1,5 +1,5 @@
-import { DEBUG } from "../..";
 import { CONTEXT } from "../../canvas/Context";
+import { DEBUG } from "../../variables/DEBUG";
 import { Coordinates } from "../types/Coordinates";
 
 export abstract class Ship {
@@ -29,8 +29,7 @@ export abstract class Ship {
     public update(param?: unknown): void {}
 
     public run(): void {
-        DEBUG && this.drawHitbox();
-        this.draw();
+        DEBUG ? this.drawHitbox() : this.draw();
         this.update();
     }
 

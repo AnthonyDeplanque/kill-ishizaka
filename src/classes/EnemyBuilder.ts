@@ -1,6 +1,8 @@
-import { DEBUG, SCORE } from "..";
+import { SCORE } from "..";
 import { CANVAS } from "../canvas/Canvas";
 import { CONTEXT } from "../canvas/Context";
+import { limitFloatDecimal } from "../utils/limitFloatDecimal";
+import { DEBUG } from "../variables/DEBUG";
 import { LIMIT_FOR_ENEMY_CREATION_IN_PIXELS } from "../variables/Limit";
 
 /**
@@ -31,7 +33,7 @@ export class EnemyBuilder {
         // this.x += this.x_direction + SCORE / 100;
         if (SCORE !== this.oldScore) {
             this.oldScore = SCORE;
-            this.x_speed += this.oldScore / 100;
+            this.x_speed += limitFloatDecimal(this.oldScore / 100);
         }
         this.x += this.x_speed * this.x_direction;
 
@@ -45,9 +47,7 @@ export class EnemyBuilder {
         }
     }
     public run() {
-        if (DEBUG) {
-            this.draw();
-        }
+        DEBUG && this.draw();
         this.update();
     }
     public getPosition(): number {

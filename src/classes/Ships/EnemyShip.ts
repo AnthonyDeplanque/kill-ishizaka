@@ -5,6 +5,7 @@ import { sinusoidalPattern } from "../../utils/sinusoidalPattern";
 import { Coordinates } from "../types/Coordinates";
 import { Ship } from "./Ship";
 import { AXIS } from "../types/Axis";
+import { limitFloatDecimal } from "../../utils/limitFloatDecimal";
 
 export class EnemyShip extends Ship {
     private xSpeed: number;
@@ -68,8 +69,8 @@ export class EnemyShip extends Ship {
     }
 
     public setSpeed(speed: Coordinates): void {
-        this.xSpeed = speed.x;
-        this.ySpeed = speed.y;
+        this.xSpeed = limitFloatDecimal(speed.x);
+        this.ySpeed = limitFloatDecimal(speed.y);
     }
     public getSpeed(): Coordinates {
         return {
@@ -84,8 +85,8 @@ export class EnemyShip extends Ship {
         };
     }
     public setUpdate(update: Coordinates): void {
-        this.xUpdate = update.x;
-        this.yUpdate = update.y;
+        this.xUpdate = limitFloatDecimal(update.x);
+        this.yUpdate = limitFloatDecimal(update.y);
     }
     public getDirection(): Coordinates {
         return {
@@ -94,7 +95,7 @@ export class EnemyShip extends Ship {
         };
     }
     public setDirection(direction: Coordinates): void {
-        this.xDirection = direction.x;
-        this.yDirection = direction.y;
+        this.xDirection = limitFloatDecimal(direction.x);
+        this.yDirection = limitFloatDecimal(direction.y);
     }
 }
