@@ -3,8 +3,9 @@ import { EnemyShip } from "../classes/Ships/EnemyShip";
 import { Laser } from "../classes/Shots/Laser";
 import { Coordinates } from "../classes/types/Coordinates";
 import { PositionAndSize } from "../classes/types/ObjectsCoordinatesAndSizes";
-import { hero, lasers, enemyBuilder, explosions, DEBUG, SCORE } from "../index";
+import { hero, lasers, enemyBuilder, explosions } from "../index";
 import { isColliding } from "../utils/isColliding";
+import { DEBUG } from "../variables/DEBUG";
 import { DELAY_BETWEEN_TWO_SHOTS } from "../variables/DelayBetweenTwoShots";
 import ENEMY_IMAGE from "../variables/enemies/EnemyImage";
 import { ENEMY_SWARM } from "../variables/enemies/enemySwarmInit";
@@ -25,7 +26,7 @@ export const shoot = (toggle: boolean, score: number): number => {
     if (hero.isAlive()) {
         if (toggle) {
             if (firingToggle === false) {
-                if (lasers.length < (DEBUG ? 1 : MAX_SIMULTANEOUS_SHOTS)) {
+                if (lasers.length < MAX_SIMULTANEOUS_SHOTS) {
                     firingToggle = true;
                     const laser = new Laser(
                         heroPosition.x + heroSize.x / 2 - Laser.LASER_SIZE_X / 2,
