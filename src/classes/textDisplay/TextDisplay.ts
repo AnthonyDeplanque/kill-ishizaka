@@ -16,20 +16,20 @@ export abstract class TextDisplay {
         this.font = font;
         this.color = color;
     }
-    getText(): string {
+    public getText(): string {
         return this.text;
     }
-    setText(text: string) {
+    public setText(text: string) {
         this.text = text;
     }
 
-    draw(): void {
+    protected draw(): void {
         CONTEXT.font = `${this.size}px ${this.font} ${this.color}`;
         CONTEXT.fillStyle = this.color;
         CONTEXT.fillText(this.text, this.x, this.y);
     }
-    update(): void {}
-    run(): void {
+    protected update(): void {}
+    public run(): void {
         this.draw();
         this.update();
     }
