@@ -1,4 +1,4 @@
-import { DEBUG } from "..";
+import { DEBUG, SCORE } from "..";
 import { CANVAS } from "../canvas/Canvas";
 import { CONTEXT } from "../canvas/Context";
 import { LIMIT_FOR_ENEMY_CREATION_IN_PIXELS } from "../variables/Limit";
@@ -13,40 +13,36 @@ export const POSITION_SIZE: number = 3;
  * to determine where to pop an enemy
  */
 export class EnemyBuilder {
-  private x: number; // the position on x axis
-  private x_direction: 1 | -1; // direction is 1 or -1 to set direction to left or right
-  constructor() {
-    this.x = LIMIT_FOR_ENEMY_CREATION_IN_PIXELS;
-    this.x_direction = 1;
-  }
-  private draw() {
-    //TODO : refactorize color names in a theme or other
-    CONTEXT.fillStyle = "red";
-    CONTEXT.fillRect(
-      this.x,
-      LIMIT_FOR_ENEMY_CREATION_IN_PIXELS,
-      POSITION_SIZE,
-      POSITION_SIZE
-    );
-  }
-  private update() {
-    this.x += this.x_direction;
-    if (this.x < LIMIT_FOR_ENEMY_CREATION_IN_PIXELS) {
-      this.x = LIMIT_FOR_ENEMY_CREATION_IN_PIXELS;
-      this.x_direction *= -1;
+    private x: number; // the position on x axis
+    private x_direction: number = 1; // direction is positive or negative to set direction to left or right
+    constructor() {
+        this.x = LIMIT_FOR_ENEMY_CREATION_IN_PIXELS;
+        this.x_direction = 1;
     }
-    if (this.x > CANVAS.width - LIMIT_FOR_ENEMY_CREATION_IN_PIXELS) {
-      this.x = CANVAS.width - LIMIT_FOR_ENEMY_CREATION_IN_PIXELS;
-      this.x_direction *= -1;
+    private draw() {
+        //TODO : refactorize color names in a theme or other
+        CONTEXT.fillStyle = "red";
+        CONTEXT.fillRect(this.x, LIMIT_FOR_ENEMY_CREATION_IN_PIXELS, POSITION_SIZE, POSITION_SIZE);
     }
-  }
-  public run() {
-    if (DEBUG) {
-      this.draw();
+    private update() {
+        this.x += this.x_direction + SCORE / 10;
+        if (this.x < LIMIT_FOR_ENEMY_CREATION_IN_PIXELS || this.x > CANVAS.width - LIMIT_FOR_ENEMY_CREATION_IN_PIXELS) {
+            if (this.x < LIMIT_FOR_ENEMY_CREATION_IN_PIXELS) {
+                this.x = LIMIT_FOR_ENEMY_CREATION_IN_PIXELS;
+            }
+            if (this.x > CANVAS.width - LIMIT_FOR_ENEMY_CREATION_IN_PIXELS) {
+                this.x = CANVAS.width - LIMIT_FOR_ENEMY_CREATION_IN_PIXELS;
+            }
+            this.x_direction *= -1;
+        }
     }
-    this.update();
-  }
-  public getPosition(): number {
-    return this.x;
-  }
+    public run() {
+        // if (DEBUG) {
+        this.draw();
+        // }
+        this.update();
+    }
+    public getPosition(): number {
+        return this.x;
+    }
 }

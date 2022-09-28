@@ -3,7 +3,7 @@ import { EnemyShip } from "../classes/Ships/EnemyShip";
 import { Laser } from "../classes/Shots/Laser";
 import { Coordinates } from "../classes/types/Coordinates";
 import { PositionAndSize } from "../classes/types/ObjectsCoordinatesAndSizes";
-import { hero, lasers, enemyBuilder, explosions, DEBUG } from "../index";
+import { hero, lasers, enemyBuilder, explosions, DEBUG, SCORE } from "../index";
 import { isColliding } from "../utils/isColliding";
 import { DELAY_BETWEEN_TWO_SHOTS } from "../variables/DelayBetweenTwoShots";
 import ENEMY_IMAGE from "../variables/enemies/EnemyImage";
@@ -19,7 +19,7 @@ let firingToggle: boolean = false;
  *
  * @param toggle boolean to detect if we are firing or not
  */
-export const shoot = (toggle: boolean) => {
+export const shoot = (toggle: boolean, score:number):number => {
   const heroPosition: Coordinates = hero.getPosition();
   const heroSize: Coordinates = hero.getSize();
   if (hero.isAlive()) {
@@ -73,20 +73,22 @@ export const shoot = (toggle: boolean) => {
             }/${enemyPosition.y + enemySize.y}`
           );
 
-        const objectA: PositionAndSize = {
+        const enemyColliding: PositionAndSize = {
           position: enemyPosition,
           size: enemySize,
         };
-        const objectB: PositionAndSize = {
+        const laserColliding: PositionAndSize = {
           position: laserPosition,
           size: laserSize,
         };
 
-        if (isColliding(objectA, objectB)) {
+        if (isColliding(enemyColliding, laserColliding)) {
           const enemyBuilderPosition = enemyBuilder.getPosition();
 
           const explosion = new Explosion(enemyPosition.x, enemyPosition.y);
           explosions.push(explosion);
+          score++;
+          console.log(score);
 
           ENEMY_SWARM.splice(indexEnemy, 1);
           lasers.splice(indexLaser, 1);
@@ -97,4 +99,5 @@ export const shoot = (toggle: boolean) => {
       laser.run();
     });
   }
+  return score;
 };

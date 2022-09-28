@@ -12,9 +12,8 @@ clone the repo,
 
 in the terminal, type `npm i` or `yarn` to install dependancies,
 
-`npm run build` to compile the TypeScript,
 
-`npm run start` to launch the server.
+`./launch.sh` will delete previous compilations, compile typescrips and launch server
 
 you can access the game on [localhost:8080](http://localhost:8080);
 

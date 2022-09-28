@@ -18,32 +18,28 @@ import { Explosion } from "./classes/Explosion";
 import { displayExplosions } from "./game/displayExplosions";
 import { heroCollision } from "./game/HeroCollision";
 
-CANVAS.width = CANVAS.width - LIMIT_FOR_CANVAS;
-CANVAS.height = CANVAS.height - LIMIT_FOR_CANVAS * 2;
+CANVAS.width = innerWidth - LIMIT_FOR_CANVAS;
+CANVAS.height = innerHeight - LIMIT_FOR_CANVAS / 2;
 
 export const DEBUG = false;
 
 export const keyboard = new Keyboard();
 export const mouse = new Mouse();
 
-export const hero: HeroShip = new HeroShip(
-  HeroShip.INIT_X,
-  HeroShip.INIT_Y,
-  HeroShip.INIT_SPEED,
-  HERO_IMAGE
-);
+export const hero: HeroShip = new HeroShip(HeroShip.INIT_X, HeroShip.INIT_Y, HeroShip.INIT_SPEED, HERO_IMAGE);
 export const enemyBuilder = new EnemyBuilder();
 export const lasers: Laser[] = [];
 export const explosions: Explosion[] = [];
 
 const FRAMES_PER_SECOND = 60; // Valid values are 60,30,20,15,10...
 // set the mim time to render the next frame
-const FRAME_MIN_TIME =
-  (1000 / 60) * (60 / FRAMES_PER_SECOND) - (1000 / 60) * 0.5;
+const FRAME_MIN_TIME = (1000 / 60) * (60 / FRAMES_PER_SECOND) - (1000 / 60) * 0.5;
 let lastFrameTime = 0; // the last frame time
 
 keyboardListener(keyboard);
 mouseListener();
+
+export let SCORE:number = 0;
 
 /**
  * this function clear the canvas and initiate a new image
@@ -51,40 +47,40 @@ mouseListener();
  * properly the canvas
  */
 export function gameLoop(time: number): void {
-  if (time - lastFrameTime < FRAME_MIN_TIME) {
-    //skip the frame if the call is too early
-    window.requestAnimationFrame(gameLoop);
-    return;
-  }
-  // render the frame
+    if (time - lastFrameTime < FRAME_MIN_TIME) {
+        //skip the frame if the call is too early
+        window.requestAnimationFrame(gameLoop);
+        return;
+    }
+    // render the frame
 
-  clearCanvas();
+    clearCanvas();
 
-  STARDUST.forEach((star: Star) => star.run());
+    STARDUST.forEach((star: Star) => star.run());
 
-  //for each enemy in the swarm, we run the enemy script and we check if the hero collides the enemy
-  ENEMY_SWARM.forEach((enemy: EnemyShip) => {
-    enemy.run();
-    heroCollision(enemy);
-  });
+    //for each enemy in the swarm, we run the enemy script and we check if the hero collides the enemy
+    ENEMY_SWARM.forEach((enemy: EnemyShip) => {
+        enemy.run();
+        heroCollision(enemy);
+    });
 
-  displayExplosions(explosions);
+    displayExplosions(explosions);
 
-  enemyBuilder.run();
-  DEBUG ? hero.drawHitbox() : hero.draw();
-  //TODO : made a condition to allow user to choose keyboard or mouse
+    enemyBuilder.run();
+    DEBUG ? hero.drawHitbox() : hero.draw();
+    //TODO : made a condition to allow user to choose keyboard or mouse
 
-  // if keyboard
-  const key = keyboard.getKey();
-  shoot(key.space);
-  hero.update(keyboard);
+    // if keyboard
+    const key = keyboard.getKey();
+    SCORE = shoot(key.space, SCORE);
+    hero.update(keyboard);
 
-  // if mouse
+    // if mouse
 
-  shoot(mouse.getClick());
-  hero.update(mouse);
+    SCORE = shoot(mouse.getClick(), SCORE);
+    hero.update(mouse);
 
-  lastFrameTime = time; // remember the time of the rendered frame
-  window.requestAnimationFrame(gameLoop); // get next frame
+    lastFrameTime = time; // remember the time of the rendered frame
+    window.requestAnimationFrame(gameLoop); // get next frame
 }
 window.requestAnimationFrame(gameLoop);
