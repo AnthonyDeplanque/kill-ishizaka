@@ -16,7 +16,7 @@ export class EnemyBuilder {
     private x: number; // the position on x axis
     private x_direction: number = 1 | -1; // direction is positive or negative to set direction to left or right
     private x_speed: number = 1;
-    private oldScore: number = SCORE;
+    private oldScore: number = SCORE; // used to set the enemy speed
 
     constructor() {
         this.x = LIMIT_FOR_ENEMY_CREATION_IN_PIXELS;
