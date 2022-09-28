@@ -20,6 +20,7 @@
   "scripts": {
     "watch": "npx tsc -w",
     "build": "npx webpack --config webpack.config.js",
-    "start": "npx webpack serve"
+    "serve": "npx webpack serve",
+    "start": "launch.sh --test"
   }
 }
