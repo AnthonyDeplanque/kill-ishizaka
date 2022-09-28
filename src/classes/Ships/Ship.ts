@@ -1,5 +1,5 @@
-import { DEBUG } from "../..";
 import { CONTEXT } from "../../canvas/Context";
+import { DEBUG } from "../../variables/DEBUG";
 import { Coordinates } from "../types/Coordinates";
 
 export abstract class Ship {
@@ -21,16 +21,12 @@ export abstract class Ship {
         CONTEXT.drawImage(this.img!, this.x, this.y);
     }
 
-    public drawHitbox(): void {
-        CONTEXT.fillStyle = "rgba(255,0,0,0.5)";
-        CONTEXT.fillRect(this.x, this.y, this.xSize, this.ySize);
-    }
+    public drawHitbox(): void {}
 
     public update(param?: unknown): void {}
 
     public run(): void {
-        DEBUG && this.drawHitbox();
-        this.draw();
+        DEBUG ? this.drawHitbox() : this.draw();
         this.update();
     }
 

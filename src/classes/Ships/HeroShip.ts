@@ -113,4 +113,9 @@ export class HeroShip extends Ship {
             CONTEXT.drawImage(this.img!, this.x, this.y);
         }
     }
+    public drawHitbox(): void {
+        const size = this.getSize();
+        CONTEXT.fillStyle = "rgba(0,255,0,0.5)";
+        CONTEXT.fillRect(this.x, this.y, size.x, size.y);
+    }
 }

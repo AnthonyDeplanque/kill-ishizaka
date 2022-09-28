@@ -5,6 +5,8 @@ import { sinusoidalPattern } from "../../utils/sinusoidalPattern";
 import { Coordinates } from "../types/Coordinates";
 import { Ship } from "./Ship";
 import { AXIS } from "../types/Axis";
+import { limitFloatDecimal } from "../../utils/limitFloatDecimal";
+import { CONTEXT } from "../../canvas/Context";
 
 export class EnemyShip extends Ship {
     private xSpeed: number;
@@ -66,10 +68,16 @@ export class EnemyShip extends Ship {
         this.setDirection(direction);
         this.setPosition(position);
     }
+    public drawHitbox(): void {
+        super.drawHitbox();
+        CONTEXT.fillStyle = "rgba(255,0,0,0.5)";
+        const size = this.getSize();
+        CONTEXT.fillRect(this.x, this.y, size.x, size.y);
+    }
 
     public setSpeed(speed: Coordinates): void {
-        this.xSpeed = speed.x;
-        this.ySpeed = speed.y;
+        this.xSpeed = limitFloatDecimal(speed.x);
+        this.ySpeed = limitFloatDecimal(speed.y);
     }
     public getSpeed(): Coordinates {
         return {
@@ -84,8 +92,8 @@ export class EnemyShip extends Ship {
         };
     }
     public setUpdate(update: Coordinates): void {
-        this.xUpdate = update.x;
-        this.yUpdate = update.y;
+        this.xUpdate = limitFloatDecimal(update.x);
+        this.yUpdate = limitFloatDecimal(update.y);
     }
     public getDirection(): Coordinates {
         return {
@@ -94,7 +102,7 @@ export class EnemyShip extends Ship {
         };
     }
     public setDirection(direction: Coordinates): void {
-        this.xDirection = direction.x;
-        this.yDirection = direction.y;
+        this.xDirection = limitFloatDecimal(direction.x);
+        this.yDirection = limitFloatDecimal(direction.y);
     }
 }
