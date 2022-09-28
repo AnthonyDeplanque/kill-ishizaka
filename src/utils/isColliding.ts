@@ -6,21 +6,17 @@ import { PositionAndSize } from "../classes/types/ObjectsCoordinatesAndSizes";
  * @param objectsCoordinates takes objectA and objectB to check their coordinates
  */
 export const isColliding = (objectA: PositionAndSize, objectB: PositionAndSize): boolean => {
-    if (
-        ((Math.trunc(objectA.position.x) >= Math.trunc(objectB.position.x) &&
-            Math.trunc(objectA.position.x) <= Math.trunc(objectB.position.x) + Math.trunc(objectB.size.x)) ||
-            (Math.trunc(objectA.position.x) + Math.trunc(objectA.size.x) >= Math.trunc(objectB.position.x) &&
-                Math.trunc(objectA.position.x) + Math.trunc(objectA.size.x) <=
-                    Math.trunc(objectB.position.x) + Math.trunc(objectB.size.x))) &&
-        ((Math.trunc(objectA.position.y) >= Math.trunc(objectB.position.y) &&
-            Math.trunc(objectA.position.y) <= Math.trunc(objectB.position.y) + Math.trunc(objectB.size.y)) ||
-            (Math.trunc(objectA.position.y) + Math.trunc(objectA.size.y) >= Math.trunc(objectB.position.y) &&
-                Math.trunc(objectA.position.y) + Math.trunc(objectA.size.y) <=
-                    Math.trunc(objectB.position.y) + Math.trunc(objectB.size.y)))
-    ) {
-        DEBUG && console.log("collide!");
-        return true;
-    }
+    const overlapX =
+        (objectA.position.x <= objectB.position.x + objectB.size.x && objectA.position.x >= objectB.position.x) ||
+        (objectA.position.x + objectA.size.x <= objectB.position.x + objectB.size.x &&
+            objectA.position.x + objectA.size.x >= objectB.position.x);
 
-    return false;
+    const overlapY =
+        (objectA.position.y <= objectB.position.y + objectB.size.y && objectA.position.y >= objectB.position.y) ||
+        (objectA.position.y + objectA.size.y <= objectB.position.y + objectB.size.y &&
+            objectA.position.y + objectA.size.y >= objectB.position.y);
+
+    if (DEBUG && overlapX && overlapY) console.log("Collide !");
+
+    return overlapX && overlapY;
 };
