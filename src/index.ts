@@ -39,7 +39,7 @@ let lastFrameTime = 0; // the last frame time
 keyboardListener(keyboard);
 mouseListener();
 
-export let SCORE:number = 0;
+export let SCORE: number = 0;
 
 /**
  * this function clear the canvas and initiate a new image

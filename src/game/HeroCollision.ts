@@ -12,26 +12,26 @@ import { killHero } from "./KillHero";
  * @param enemy
  */
 export const heroCollision = (enemy: EnemyShip) => {
-  const heroPositionAndSize: PositionAndSize = {
-    position: hero.getPosition(),
-    size: hero.getSize(),
-  };
+    const heroPositionAndSize: PositionAndSize = {
+        position: hero.getPosition(),
+        size: hero.getSize(),
+    };
 
-  const enemyPositionAndSize: PositionAndSize = {
-    position: enemy.getPosition(),
-    size: enemy.getSize(),
-  };
-  if (hero.isAlive()) {
-    if (isColliding(heroPositionAndSize, enemyPositionAndSize)) {
-      const explosion: Explosion = killHero();
-      explosions.push(explosion);
-      setTimeout(() => {
-        hero.setAlive(true);
-        hero.setPosition({
-          x: HeroShip.INIT_X,
-          y: HeroShip.INIT_Y,
-        });
-      }, DELAY_TO_RESPAWN);
+    const enemyPositionAndSize: PositionAndSize = {
+        position: enemy.getPosition(),
+        size: enemy.getSize(),
+    };
+    if (hero.isAlive()) {
+        if (isColliding(heroPositionAndSize, enemyPositionAndSize)) {
+            const explosion: Explosion = killHero();
+            explosions.push(explosion);
+            setTimeout(() => {
+                hero.setAlive(true);
+                hero.setPosition({
+                    x: HeroShip.INIT_X,
+                    y: HeroShip.INIT_Y,
+                });
+            }, DELAY_TO_RESPAWN);
+        }
     }
-  }
 };

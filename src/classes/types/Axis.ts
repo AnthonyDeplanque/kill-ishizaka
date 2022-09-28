@@ -1,5 +1,4 @@
 export enum AXIS {
-  X = "x",
-  Y = "y"
+    X = "x",
+    Y = "y",
 }
-

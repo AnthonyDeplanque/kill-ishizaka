@@ -7,11 +7,8 @@ import { Coordinates } from "../classes/types/Coordinates";
  * @returns
  */
 export const killHero = (): Explosion => {
-  const explosionPosition: Coordinates = hero.getPosition();
-  const explosion: Explosion = new Explosion(
-    explosionPosition.x,
-    explosionPosition.y
-  );
-  hero.setAlive(false);
-  return explosion;
+    const explosionPosition: Coordinates = hero.getPosition();
+    const explosion: Explosion = new Explosion(explosionPosition.x, explosionPosition.y);
+    hero.setAlive(false);
+    return explosion;
 };

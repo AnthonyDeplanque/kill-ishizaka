@@ -15,26 +15,26 @@ import { Coordinates } from "../classes/types/Coordinates";
  * @param lowLimit the low limit for the pattern
  */
 export const sinusoidalPattern = (
-  object: EnemyShip,
-  axis: AXIS,
-  highLimit: number,
-  lowLimit: number
+    object: EnemyShip,
+    axis: AXIS,
+    highLimit: number,
+    lowLimit: number
 ): { update: Coordinates; direction: Coordinates } => {
-  //TODO => Check the sinusoidal pattern
-  const update = object.getUpdate();
-  const direction = object.getDirection();
+    //TODO => Check the sinusoidal pattern
+    const update = object.getUpdate();
+    const direction = object.getDirection();
 
-  if (update[axis] > highLimit) {
-    update[axis] = highLimit;
-    direction[axis] *= -1;
-  }
-  if (update[axis] < lowLimit) {
-    update[axis] = lowLimit;
-    direction[axis] *= -1;
-  }
+    if (update[axis] > highLimit) {
+        update[axis] = highLimit;
+        direction[axis] *= -1;
+    }
+    if (update[axis] < lowLimit) {
+        update[axis] = lowLimit;
+        direction[axis] *= -1;
+    }
 
-  return {
-    update,
-    direction,
-  };
+    return {
+        update,
+        direction,
+    };
 };

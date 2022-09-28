@@ -19,85 +19,85 @@ let firingToggle: boolean = false;
  *
  * @param toggle boolean to detect if we are firing or not
  */
-export const shoot = (toggle: boolean, score:number):number => {
-  const heroPosition: Coordinates = hero.getPosition();
-  const heroSize: Coordinates = hero.getSize();
-  if (hero.isAlive()) {
-    if (toggle) {
-      if (firingToggle === false) {
-        if (lasers.length < (DEBUG ? 1 : MAX_SIMULTANEOUS_SHOTS)) {
-          firingToggle = true;
-          const laser = new Laser(
-            heroPosition.x + heroSize.x / 2 - Laser.LASER_SIZE_X / 2,
-            heroPosition.y - Laser.LASER_SIZE_Y
-          );
-          lasers.push(laser);
+export const shoot = (toggle: boolean, score: number): number => {
+    const heroPosition: Coordinates = hero.getPosition();
+    const heroSize: Coordinates = hero.getSize();
+    if (hero.isAlive()) {
+        if (toggle) {
+            if (firingToggle === false) {
+                if (lasers.length < (DEBUG ? 1 : MAX_SIMULTANEOUS_SHOTS)) {
+                    firingToggle = true;
+                    const laser = new Laser(
+                        heroPosition.x + heroSize.x / 2 - Laser.LASER_SIZE_X / 2,
+                        heroPosition.y - Laser.LASER_SIZE_Y
+                    );
+                    lasers.push(laser);
 
-          // DEBUG && ENEMY_SWARM.forEach((enemy: EnemyShip) => {
-          //   const enemyPosition = enemy.getPosition();
-          //   const enemySize = enemy.getSize();
-          //   console.log(`Enemy=> x:${enemyPosition.x}-${enemySize.x + enemyPosition.x}`);
-          // });
+                    // DEBUG && ENEMY_SWARM.forEach((enemy: EnemyShip) => {
+                    //   const enemyPosition = enemy.getPosition();
+                    //   const enemySize = enemy.getSize();
+                    //   console.log(`Enemy=> x:${enemyPosition.x}-${enemySize.x + enemyPosition.x}`);
+                    // });
 
-          setTimeout((): void => {
-            firingToggle = false;
-          }, DELAY_BETWEEN_TWO_SHOTS);
+                    setTimeout((): void => {
+                        firingToggle = false;
+                    }, DELAY_BETWEEN_TWO_SHOTS);
+                }
+            }
         }
-      }
     }
-  }
-  if (lasers.length && lasers.length > 0) {
-    lasers.forEach((laser: Laser, indexLaser: number) => {
-      const laserPosition = laser.getPosition();
-      const laserSize = laser.getSize();
+    if (lasers.length && lasers.length > 0) {
+        lasers.forEach((laser: Laser, indexLaser: number) => {
+            const laserPosition = laser.getPosition();
+            const laserSize = laser.getSize();
 
-      if (laserPosition.y < 0) {
-        lasers.splice(indexLaser, 1);
-      }
+            if (laserPosition.y < 0) {
+                lasers.splice(indexLaser, 1);
+            }
 
-      DEBUG &&
-        console.log(
-          `laser x:${laserPosition.x}/${laserPosition.x + laserSize.x} - y:${
-            laserPosition.y
-          }/${laserPosition.y + laserSize.y}`
-        );
+            DEBUG &&
+                console.log(
+                    `laser x:${laserPosition.x}/${laserPosition.x + laserSize.x} - y:${laserPosition.y}/${
+                        laserPosition.y + laserSize.y
+                    }`
+                );
 
-      ENEMY_SWARM.forEach((enemy: EnemyShip, indexEnemy: number) => {
-        const enemyPosition = enemy.getPosition();
-        const enemySize = enemy.getSize();
+            ENEMY_SWARM.forEach((enemy: EnemyShip, indexEnemy: number) => {
+                const enemyPosition = enemy.getPosition();
+                const enemySize = enemy.getSize();
 
-        DEBUG &&
-          console.log(
-            `enemy x:${enemyPosition.x}/${enemyPosition.x + enemySize.x} - y:${
-              enemyPosition.y
-            }/${enemyPosition.y + enemySize.y}`
-          );
+                DEBUG &&
+                    console.log(
+                        `enemy x:${enemyPosition.x}/${enemyPosition.x + enemySize.x} - y:${enemyPosition.y}/${
+                            enemyPosition.y + enemySize.y
+                        }`
+                    );
 
-        const enemyColliding: PositionAndSize = {
-          position: enemyPosition,
-          size: enemySize,
-        };
-        const laserColliding: PositionAndSize = {
-          position: laserPosition,
-          size: laserSize,
-        };
+                const enemyColliding: PositionAndSize = {
+                    position: enemyPosition,
+                    size: enemySize,
+                };
+                const laserColliding: PositionAndSize = {
+                    position: laserPosition,
+                    size: laserSize,
+                };
 
-        if (isColliding(enemyColliding, laserColliding)) {
-          const enemyBuilderPosition = enemyBuilder.getPosition();
+                if (isColliding(enemyColliding, laserColliding)) {
+                    const enemyBuilderPosition = enemyBuilder.getPosition();
 
-          const explosion = new Explosion(enemyPosition.x, enemyPosition.y);
-          explosions.push(explosion);
-          score++;
-          console.log(score);
+                    const explosion = new Explosion(enemyPosition.x, enemyPosition.y);
+                    explosions.push(explosion);
+                    score++;
+                    // console.log(score);
 
-          ENEMY_SWARM.splice(indexEnemy, 1);
-          lasers.splice(indexLaser, 1);
-          const newEnemy = new EnemyShip(enemyBuilderPosition, 0, ENEMY_IMAGE);
-          ENEMY_SWARM.push(newEnemy);
-        }
-      });
-      laser.run();
-    });
-  }
-  return score;
+                    ENEMY_SWARM.splice(indexEnemy, 1);
+                    lasers.splice(indexLaser, 1);
+                    const newEnemy = new EnemyShip(enemyBuilderPosition, 0, ENEMY_IMAGE);
+                    ENEMY_SWARM.push(newEnemy);
+                }
+            });
+            laser.run();
+        });
+    }
+    return score;
 };
